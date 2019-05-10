@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.h                                              :+:    :+:            */
+/*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/10 18:53:50 by igvan-de      ########   odam.nl         */
+/*   Created: 2019/05/10 11:55:46 by igvan-de       #+#    #+#                */
+/*   Updated: 2019/05/10 13:23:10 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
+#include <fcntl.h>
 
-#include <unistd.h>
-#include "./minilibx_macos/mlx.h"
-#include "./Libft/includes/libft.h"
-#include "./Libft/includes/get_next_line.h"
+int     main(int ag, char **av)
+{
+    char    *line;
+    int     ret;
+    int     fd;
 
-#define FALSE 0
-#define TRUE 1
-
-int     main(int ag, char **av);
-
-#endif
+    ret = 1;
+    fd = open(av[1], O_RDONLY);
+    if (ag != 2)
+        return (FALSE);
+    while (ret > 0)
+    {
+        ret = get_next_line(fd, &line);
+        free(line);
+        if (ret == -1)
+            break;
+    }
+    return (0);
+}
