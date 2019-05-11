@@ -6,42 +6,42 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/05/09 17:46:17 by igvan-de       #+#    #+#                 #
-#    Updated: 2019/05/10 18:54:46 by igvan-de      ########   odam.nl          #
+#    Updated: 2019/05/11 15:00:03 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
+COLOR_GREEN = $(shell printf "\e[38;5;10m")
+COLOR_DEFAULT = $(shell printf "\e[39m")
+
 BINARY = fdf
-SRCS = read.c
+SRCS = read.c error.c window.c
 OBJ = $(SRCS:%.c=%.o)
 FLAGS = -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit -o $(BINARY)
-LIB = Libft/Libft.a
+LIB = Libft/Libft.a Printf/libftprintf.a
 NORM = norminette $(SRCS) $(HEADER) | grep -e "Error" -e "Warning" -B 1
+PRINT_PLUS = $(shell printf '$(COLOR_GREEN)[ + ]$(COLOR_DEFAULT)')
 
 all: $(BINARY)
 
 $(BINARY):
-	@echo "Compiling in progress..."
-	@make -C minilibx_macos > /dev/null && make -C Libft/
+	@make -C minilibx_macos > /dev/null && make -C Libft/ && make -C ./Printf
 	@gcc -g $(FLAGS) -I/usr/X11/includes $(SRCS) $(LIB)
-	@echo "Compiling completed"
+	@echo "$(PRINT_PLUS) Compiling completed"
 
 clean:
-	@echo "Cleaning objectives in progress.."
 	@rm -f $(OBJ)
-	@make -C ./Libft clean
-	@echo "Cleaning objectives completed"
+	@make -C ./Libft clean && make -C ./Printf clean
+	@echo "$(PRINT_PLUS) Cleaning objectives completed"
 
 fclean: clean
-	@echo  "Cleaning all in progress.."
 	@rm -f $(BINARY)
-	@make -C ./Libft fclean
-	@echo "Cleaning all completed"
+	@make -C ./Libft fclean && make -C ./Printf fclean
+	@echo "$(PRINT_PLUS) Cleaning all completed"
 
 re: fclean all
-	@echo "Recompiling in progress.."
-	@echo "Recompiling completed"
+	@echo "$(PRINT_PLUS) Recompiling completed"
 
 norm:
-	@echo "===============NORMINETTE==============="
+	@echo "===================NORMINETTE==================="
 	@$(NORM) || echo "no norminette errors"
-	@echo "========================================"
+	@echo "================================================"
