@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   window.c                                           :+:    :+:            */
+/*   image.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/11 14:28:44 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/13 16:12:24 by igvan-de      ########   odam.nl         */
+/*   Created: 2019/05/13 12:05:50 by igvan-de       #+#    #+#                */
+/*   Updated: 2019/05/13 15:59:20 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	window_display(t_fdf *mlx)
+int		image_window(t_fdf *mlx)
 {
-	mlx->window = mlx_new_window(mlx->mlx_ptr, 1250, 800, "FDF");
+	mlx_clear_window(mlx->mlx_ptr, mlx->window);
+	mlx->image = mlx_new_image(mlx->mlx_ptr, 10, 50);
+	// mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian)
+	// mlx->image = mlx_pixel_put(mlx->mlx_ptr, mlx->window, 50 + mlx->x, 50 + mlx->y, yellow);
+	return (0);
 }
