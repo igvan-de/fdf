@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/13 18:02:39 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/14 18:19:32 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,22 @@ typedef struct 		s_fdf
 	void			*mlx_ptr;
 	void			*window;
 	void			*image;
-	int 			x;
+	int				x;
 	int				y;
 }					t_fdf;
+
+typedef struct 		s_map
+{
+	int				height;
+	int				width;
+	int				**field;
+}					t_map;
+
 
 void	window_display(t_fdf *mlx);
 
 int		main(int ag, char **av);
-int     read_fd(char *file, t_fdf *mlx);
+int     **set_field(char *file, t_map *field);
 int		map_error(int a, int b);
 int		image_window(t_fdf *mlx);
 int		key_press(int key, t_fdf *mlx);

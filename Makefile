@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/05/09 17:46:17 by igvan-de       #+#    #+#                 #
-#    Updated: 2019/05/13 13:42:28 by igvan-de      ########   odam.nl          #
+#    Updated: 2019/05/14 18:18:51 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ COLOR_GREEN = $(shell printf "\e[38;5;10m")
 COLOR_DEFAULT = $(shell printf "\e[39m")
 
 BINARY = fdf
-SRCS = read.c error.c window.c main.c image.c keyboard.c
+SRCS = field.c error.c window.c main.c image.c keyboard.c
 OBJ = $(SRCS:%.c=%.o)
 FLAGS = -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit -o $(BINARY)
 LIB = Libft/Libft.a Printf/libftprintf.a
