@@ -28,8 +28,6 @@ int		**set_field(char *file, t_map *field)
 	while (ret > 0)
 	{
 		ret = get_next_line(fd, &line);
-		if (line == '\0')
-			return (0);
 		buff = ft_strjoin(buff, line);
 		y = ft_strsplit(*line, '\n');
 		x = ft_strsplit(*line, ' ');
