@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/05/09 17:46:17 by igvan-de       #+#    #+#                 #
-#    Updated: 2019/05/14 18:18:51 by igvan-de      ########   odam.nl          #
+#    Updated: 2019/05/16 17:05:50 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,16 @@ BINARY = fdf
 SRCS = field.c error.c window.c main.c image.c keyboard.c
 OBJ = $(SRCS:%.c=%.o)
 FLAGS = -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit -o $(BINARY)
-LIB = Libft/Libft.a Printf/libftprintf.a
+LIB = Printf/libftprintf.a
 NORM = norminette $(SRCS) $(HEADER) | grep -e "Error" -e "Warning" -B 1
 PRINT_PLUS = $(shell printf '$(COLOR_GREEN)[ + ]$(COLOR_DEFAULT)')
 
 all: $(BINARY)
 
 $(BINARY):
-	@make -C minilibx_macos > /dev/null && make -C Libft/ && make -C ./Printf
+	@make -C minilibx_macos > /dev/null
+	@make -C Libft
+	@make -C Printf
 	@gcc -g $(FLAGS) -I/usr/X11/includes $(SRCS) $(LIB)
 	@echo "$(PRINT_PLUS) Compiling completed"
 
