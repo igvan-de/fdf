@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/10 11:55:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/16 14:23:12 by igvan-de      ########   odam.nl         */
+/*   Created: 2019/05/16 15:11:06 by igvan-de       #+#    #+#                */
+/*   Updated: 2019/05/16 15:11:08 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,3 @@ int		**set_field(char *file, t_map *field)
     }
 	return (field);
 }
-
-	// while (ret > 0)
-	// {
-	// 	ret = get_next_line(fd, &line);
-	// 	x_as = ft_strsplit(line, ' ');
-	// 	tab = ft_strlen(*x_as);
-	// 	field->width = ft_atoi(tab);
-	// 	free(line);
-	// 	if (ret == -1)
-	// 		break ;
-	// }
-		// if (!map_error(first_line, len_lines))
-		// 	return (FALSE);
