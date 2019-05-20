@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 13:34:37 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/20 15:42:14 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/20 19:12:05 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int					key_press(int key, t_fdf *mlx)
 	if (key == KEY_LEFT && mlx->x >= -40)
 		mlx->x -= 10;
 	// ft_printf("%d\n", key); To check which keynode has which value
-	return (TRUE);
+	return (0);
 }

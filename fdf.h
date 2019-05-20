@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/20 17:46:48 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/20 19:14:19 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 #include "./Libft/includes/get_next_line.h"
 #include "./Printf/ft_printf.h"
 
-#define FALSE 0
-#define TRUE 1
-
 #define yellow 0xf8d92b
 #define blue 0x469DFF
 #define green 0x31D75D
@@ -32,14 +29,17 @@
 #define KEY_RIGHT 124
 #define KEY_DOWN 125
 
+#define WIDTH 1250
+#define HEIGHT 800
+
 typedef struct 		s_fdf
 {
 	void			*mlx_ptr;
 	void			*window;
 	void			*image;
+	int				placement;
 	int				x;
 	int				y;
-	char			*string;
 }					t_fdf;
 
 typedef struct 		s_map
