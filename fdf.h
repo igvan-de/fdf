@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/20 16:00:55 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/20 17:46:48 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 #define yellow 0xf8d92b
 #define blue 0x469DFF
+#define green 0x31D75D
 
 #define KEY_ESC 53
 #define KEY_UP 126
@@ -35,7 +36,7 @@ typedef struct 		s_fdf
 {
 	void			*mlx_ptr;
 	void			*window;
-	int				image;
+	void			*image;
 	int				x;
 	int				y;
 	char			*string;

@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/16 15:11:06 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/18 14:54:20 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/20 18:03:33 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		**read_field(char *file, t_map *field, int y)
 	int		fd;
 	int		x;
 	int		ret;
-	
+
 	x = 0;
 	ret = 1;
 	field->field = (int**)ft_memalloc(sizeof(int*) * y);
@@ -39,7 +39,7 @@ static int		**read_field(char *file, t_map *field, int y)
 		field->field[y] = (int*)ft_memalloc(sizeof(int) * x);
 		while (x > 0)
 		{
-	   		x--;
+			x--;
 			field->field[y][x] = ft_atoi(tab[x]);
 		}
 		free(line);
@@ -50,7 +50,7 @@ static int		**read_field(char *file, t_map *field, int y)
 	return (field->field);
 }
 
-int			**set_field(char *file, t_map *field)
+int				**set_field(char *file, t_map *field)
 {
 	char	*line;
 	int		y;
