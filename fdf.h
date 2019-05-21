@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/20 19:14:19 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/21 15:24:54 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct 		s_map
 
 
 void	window_display(t_fdf *mlx);
+void	drawaline(int x0, int y0, int x1, int y1, t_fdf *mlx);
 
 int		main(int ag, char **av);
 int     **set_field(char *file, t_map *field);		//change names

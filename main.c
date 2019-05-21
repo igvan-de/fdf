@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 11:41:41 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/20 19:11:54 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/21 14:12:07 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static void		menu(void)
 	ft_printf("\033[1;32m");
 	ft_printf("BUTTONS GUIDE\n");
 	ft_printf("\033[0m");
-	ft_printf("Keyboard movements:\n");
-	ft_printf(" Up	↑\n Left  ← →  Right\n Down	↓\n");
+	ft_printf("Keyboard movements:\n Up	↑\n Left  ← →  Right\n Down	↓\n");
 }
 
 int				main(int ag, char **av)
@@ -40,5 +39,6 @@ int				main(int ag, char **av)
 	mlx_loop_hook(mlx->mlx_ptr, image_window, mlx);
 	mlx_hook(mlx->window, 2, 0, key_press, mlx);
 	mlx_loop(mlx->mlx_ptr);
+
 	return (0);
 }
