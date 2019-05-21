@@ -6,50 +6,20 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/21 13:56:35 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/21 16:52:54 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/21 17:31:31 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		draw_pixel(int x, int y, float something,  t_fdf *mlx)
+static int		draw_pixel(int x, int y, float something, t_fdf *mlx)
 {
 	mlx_clear_window(mlx->mlx_ptr, mlx->window);
-	mlx->image = mlx_pixel_put(mlx->mlx_ptr, mlx->window, 500 + x + mlx->x, 250 + y + mlx->y, yellow);
+	mlx_pixel_put(mlx->mlx_ptr, mlx->window, 0 + x + mlx->x, 0 + y + mlx->y, yellow);
 	return (0);
 }
 
-static float	absolute(float x)	/*return absolute value of number*/
-{
-	if(x < 0)
-		return (-x);
-	return (x);
-}
-
-static int		ipartofnumber(float x)
-{
-	return((int)x);
-}
-
-static int		roundnumber(float x)
-{
-	return(ipartofnumber(x + 0.5));
-}
-
-static float	fpartofnumber(float x)
-{
-	if (x < 0)
-		return(x - ipartofnumber(x));
-	else
-		return(x - ipartofnumber(x) + 1);
-}
-
-static float	fractolofnumber(float x)
-{
-	return (1 - fpartofnumber(x));
-}
-
-void		drawaline(int x0, int y0, int x1, int y1, t_fdf *mlx)
+void			drawaline(int x0, int y0, int x1, int y1, t_fdf *mlx)
 {
 	int		steep;
 	int		x;
