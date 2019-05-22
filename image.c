@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 12:05:50 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/21 17:30:42 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/22 18:42:15 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,35 @@ int		image_window(t_fdf *mlx)
 	mlx_clear_window(mlx->mlx_ptr, mlx->window);
 	mlx->image = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	mlx->placement = mlx_put_image_to_window(mlx->mlx_ptr, mlx->window, mlx->image, 650, 450);
-	drawaline(0, 0, 600, 600, mlx);
-	// mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian)
-	//mlx->image = mlx_pixel_put(mlx->mlx_ptr, mlx->window, 50 + mlx->x, 50 + mlx->y, yellow);
+	draw_map(mlx);
 	return (0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian)
+	//mlx->image = mlx_pixel_put(mlx->mlx_ptr, mlx->window, 50 + mlx->x, 50 + mlx->y, yellow);
