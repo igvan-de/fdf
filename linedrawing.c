@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/21 13:56:35 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/22 19:52:14 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/22 19:58:01 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void			draw_map(t_fdf *mlx)
 
 	x = 0;
 	y = 0;
-	x1 = x + 1;
-	y1 = y + 1;
+	x1 = 40;
+	y1 = 40;
 	while (y < mlx->map->height)
 	{
 		x = 0;
@@ -97,16 +97,16 @@ void			draw_map(t_fdf *mlx)
 		{
 			// start = set_cordinates(x, y, mlx);		
 			// end = set_cordinates(x + 1, y, mlx);
-			x1 *= 40;
 			if (x + 1 <= mlx->map->width)
 				drawaline(x, x1, y, y1, mlx);
-			y1 *= 40;
 			// end = set_cordinates(x, y + 1, mlx);
 			printf("x = %d y = %d\n", x, y);
 			if (y + 1 <= mlx->map->height)
 				drawaline(x, x1, y, y1, mlx);
 			x++;
+			x1++;
 		}
 		y++;
+		y1++;
 	}
 }
