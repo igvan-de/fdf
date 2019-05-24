@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/24 14:23:02 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/24 20:11:42 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,20 @@
 #define KEY_RIGHT 124
 #define KEY_DOWN 125
 
+#define ABS(x) (x) < 0 ? (x) * -1 : (x) ///Is this allowed?
+
 typedef struct 		s_map
 {
 	int				height;
 	int				width;
-	int				**field;
+	int				**map;
 }					t_map;
+
+typedef struct		s_point
+{
+	int				x;
+	int				y;
+}					t_point;
 
 typedef struct 		s_fdf
 {
@@ -52,27 +60,16 @@ typedef struct 		s_fdf
 	t_map			*map;
 }					t_fdf;
 
-// typedef struct 		s_line
-// {
-// 	int				x;
-// 	int				y;
-// }					t_line;
-
 void	window_display(t_fdf *mlx);
-void	which_line(int x0, int x1, int y0, int y1, t_fdf *mlx);
-void	draw_map(t_fdf *mlx);
+void	draw_lines(t_point a, t_point b, t_fdf *mlx);
+
+int 	test(t_fdf *mlx); ////Remove, is only to test!!!
 
 int		main(int ag, char **av);
 int     **set_field(char *file, t_map *field);
 int		**map_error();
+int		put_input(void);
 int		image_window(t_fdf *mlx);
 int		key_press(int key, t_fdf *mlx);
-int		mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
-int		ipartofnumber(float x);
-int		roundnumber(float x);
-
-float	absolute(float x);
-float	fpartofnumber(float x);
-float	fractolofnumber(float x);
 
 #endif

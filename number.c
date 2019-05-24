@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/21 17:13:28 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/21 17:15:03 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/24 17:28:54 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 float	absolute(float x)
 {
-	if(x < 0)
+	if (x < 0)
 		return (-x);
 	return (x);
 }
@@ -22,9 +22,9 @@ float	absolute(float x)
 float	fpartofnumber(float x)
 {
 	if (x < 0)
-		return(x - ipartofnumber(x));
+		return (x - ipartofnumber(x));
 	else
-		return(x - ipartofnumber(x) + 1);
+		return (x - ipartofnumber(x) + 1);
 }
 
 float	fractolofnumber(float x)
@@ -34,10 +34,10 @@ float	fractolofnumber(float x)
 
 int		ipartofnumber(float x)
 {
-	return((int)x);
+	return ((int)x);
 }
 
 int		roundnumber(float x)
 {
-	return(ipartofnumber(x + 0.5));
+	return (ipartofnumber(x + 0.5));
 }

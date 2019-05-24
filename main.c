@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 11:41:41 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/22 18:43:27 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/24 18:30:31 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				main(int ag, char **av)
 {
 	t_fdf	*mlx;
 	if (ag == 1)
-		return (0);
+		return (put_input());
 	mlx = (t_fdf*)ft_memalloc(sizeof(t_fdf));
 	mlx->map = (t_map*)ft_memalloc(sizeof(t_map));
 	mlx->mlx_ptr = mlx_init();

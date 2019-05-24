@@ -5,167 +5,88 @@
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/21 13:56:35 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/24 14:28:09 by igvan-de      ########   odam.nl         */
+/*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
+/*   Updated: 2019/05/24 20:29:53 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		draw_pixel(int x, int y, float something, t_fdf *mlx)
+static int		put_pixel(int x, int y, t_fdf *mlx)
 {
 	mlx_clear_window(mlx->mlx_ptr, mlx->window);
-	mlx_pixel_put(mlx->mlx_ptr, mlx->window, 100 + x + mlx->x, 100 + y + mlx->y, yellow);
+	mlx_pixel_put(mlx->mlx_ptr, mlx->window, x + mlx->x, y + mlx->y, yellow);
 	return (0);
 }
 
-static void			drawaline_x(int x0, int y0, int x1, int y1, t_fdf *mlx)
+static void	plotlineLow(int y, int x, int a, int b, t_fdf *mlx)
 {
-	int		steep;
-	int		x;
-	float	fx;
-	float	fy;
-	float	gradient;
-	float	intersect;
+	int		delta;
+	int		i;
 
-	// printf("x = %d x1 = %d y = %d y1 = %d\n", x0, x1, y0, y1);
-	steep = (y1 - y0) > (x1 - x0);
-	if(steep)
+	delta = (2 * y) - x;
+	i = 0;
+	while (i < mlx->map->width)
 	{
-		ft_swap(&x0, &y1);
-		ft_swap(&x1, &y1);
-	}
-	if (x0 > x1)
-	{
-		ft_swap(&x0, &x1);
-		ft_swap(&y0, &y1);
-	}
-	fx = x1 - x0;
-	fy = y1 - y0;
-	gradient = fy / fx;
-	if (fx == 0.0)
-		gradient = 1;
-	intersect = y0;
-	x = x0;
-	if (steep)
-	{
-		while (x <= x1)
+		put_pixel(a, b, mlx);
+		if (delta > 0)
 		{
-			draw_pixel(ipartofnumber(intersect), x, fractolofnumber(intersect), mlx);
-			draw_pixel(ipartofnumber(intersect), x, fractolofnumber(intersect), mlx);
-			intersect += gradient;
+			i++;
+			delta = delta - (2 * x);
+		}
+		delta = delta + (2 * y);
+	}
+}
+
+static void	plotlineHigh(int y, int x, t_point a, t_point b, t_fdf *mlx)
+{
+	int		delta;
+
+	printf("test2\n");
+	delta = (2*x) - y;
+	while (b.y < mlx->map->height)
+	{
+		put_pixel(a.y, b.y, mlx);
+		if (delta > 0)
+		{
 			x++;
+			delta = delta - (2 * y);
 		}
-	}
-	else
-	{
-		while (x <= x1)
-		{
-			draw_pixel(x, ipartofnumber(intersect), fractolofnumber(intersect), mlx);
-			draw_pixel(x, ipartofnumber(intersect) - 1, fpartofnumber(intersect), mlx);
-			intersect += gradient;
-			x++;
-		}
+		delta = delta + (2 * x);
 	}
 }
 
-static void			drawaline_y(int x0, int y0, int x1, int y1, t_fdf *mlx)
+void		draw_lines(t_point a, t_point b, t_fdf *mlx)
 {
-	int		steep;
-	int		y;
-	float	fx;
-	float	fy;
-	float	gradient;
-	float	intersect;
+	int		delta_x;
+	int		delta_y;
 
-	// printf("x = %d x1 = %d y = %d y1 = %d\n", x0, x1, y0, y1);
-	steep = (y0 - y1) > (x0 - x1);
-	if(steep)
+	delta_x = (b.x - a.x);
+	delta_y = (b.y - a.y);
+	if (delta_x < 0 || delta_y < 0)	//Na deze if statement zijn a.x & a.y altijd groter dan b.x & b.y!
 	{
-		ft_swap(&x0, &y1);
-		ft_swap(&x1, &y1);
+		ft_swap(&a.x, &b.x);
+		ft_swap(&b.y, &b.y);
+		if (delta_x < 0)
+			delta_x = -delta_x;
+		if (delta_y < 0)
+			delta_y = -delta_y;
 	}
-	if (x1 > x0)
-	{
-		ft_swap(&x0, &x1);
-		ft_swap(&y0, &y1);
-	}
-	fx = x0 - x1;
-	fy = y0 - y1;
-	gradient = fx / fy;
-	if (fy == 0.0)
-		gradient = 1;
-	intersect = x0;
-	y = y0;
-	if (steep)
-	{
-		while (y <= y1)
-		{
-			draw_pixel(ipartofnumber(intersect), y, fractolofnumber(intersect), mlx);
-			draw_pixel(ipartofnumber(intersect), y, fractolofnumber(intersect), mlx);
-			intersect += gradient;
-			y++;
-		}
-	}
+	if (ABS(a.y - b.y) > ABS(a.x - b.x))
+		plotlineLow(delta_y, delta_x, a.x, b.x, mlx);
 	else
-	{
-		while (y <= y1)
-		{
-			draw_pixel(y, ipartofnumber(intersect), fractolofnumber(intersect), mlx);
-			draw_pixel(y, ipartofnumber(intersect) - 1, fpartofnumber(intersect), mlx);
-			intersect += gradient;
-			y++;
-		}
-	}
+		plotlineHigh(delta_y, delta_x, a, b, mlx);
 }
 
-void	which_line(int x0, int y0, int x1, int y1, t_fdf *mlx)
+int test(t_fdf *mlx)
 {
-	if (x0 >= x1 && y0 >= y1)
-		drawaline_x(x0, y0, x1, y1, mlx);
-	else
-		drawaline_y(x0, y0, x1, y1, mlx);
+	t_point a;
+	t_point b;
+
+	a.x = 200;
+	a.y = 100;
+	b.x = 100;
+	b.y = 300;
+	draw_lines(a, b, mlx);
+	return (0);
 }
-
-
-// t_line				set_cordinates(int x, int y, t_fdf *mlx)
-// {
-// 	t_line	line;
-
-// 	line.x = x * 30;
-// 	line.y = y * 30;
-// 	// line.z = mlx->map->field[y][x];
-// 	return (line);
-// }
-
-// void			draw_map(t_fdf *mlx)
-// {
-// 	int		x;
-// 	int		y;
-// 	int		x1;
-// 	int		y1;
-
-// 	x = 0;
-// 	y = 0;
-// 	x1 = 40;
-// 	y1 = 40;
-// 	while (y < mlx->map->height)
-// 	{
-// 		x = 0;
-// 		while (x < mlx->map->width)
-// 		{
-// 			// start = set_cordinates(x, y, mlx);		
-// 			// end = set_cordinates(x + 1, y, mlx);
-// 			if (x + 1 <= mlx->map->width)
-// 				drawaline(x, x1, y, y1, mlx);
-// 			// end = set_cordinates(x, y + 1, mlx);
-// 			// printf("x = %d y = %d\n", x, y);
-// 			if (y + 1 <= mlx->map->height)
-// 				drawaline(x, x1, y, y1, mlx);
-// 			x++;
-// 			x1++;
-// 		}
-// 		y++;
-// 		y1++;
-// 	}
-// }
