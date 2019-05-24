@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/21 13:56:35 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/22 19:58:01 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/24 14:28:09 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		draw_pixel(int x, int y, float something, t_fdf *mlx)
 	return (0);
 }
 
-void			drawaline(int x0, int y0, int x1, int y1, t_fdf *mlx)
+static void			drawaline_x(int x0, int y0, int x1, int y1, t_fdf *mlx)
 {
 	int		steep;
 	int		x;
@@ -33,12 +33,12 @@ void			drawaline(int x0, int y0, int x1, int y1, t_fdf *mlx)
 	if(steep)
 	{
 		ft_swap(&x0, &y1);
-		ft_swap(&x0, &y1);
+		ft_swap(&x1, &y1);
 	}
 	if (x0 > x1)
 	{
-		ft_swap(&x0, &y1);
-		ft_swap(&x0, &y1);
+		ft_swap(&x0, &x1);
+		ft_swap(&y0, &y1);
 	}
 	fx = x1 - x0;
 	fy = y1 - y0;
@@ -52,7 +52,7 @@ void			drawaline(int x0, int y0, int x1, int y1, t_fdf *mlx)
 		while (x <= x1)
 		{
 			draw_pixel(ipartofnumber(intersect), x, fractolofnumber(intersect), mlx);
-			draw_pixel(ipartofnumber(intersect) - 1, x, fpartofnumber(intersect), mlx);
+			draw_pixel(ipartofnumber(intersect), x, fractolofnumber(intersect), mlx);
 			intersect += gradient;
 			x++;
 		}
@@ -69,6 +69,65 @@ void			drawaline(int x0, int y0, int x1, int y1, t_fdf *mlx)
 	}
 }
 
+static void			drawaline_y(int x0, int y0, int x1, int y1, t_fdf *mlx)
+{
+	int		steep;
+	int		y;
+	float	fx;
+	float	fy;
+	float	gradient;
+	float	intersect;
+
+	// printf("x = %d x1 = %d y = %d y1 = %d\n", x0, x1, y0, y1);
+	steep = (y0 - y1) > (x0 - x1);
+	if(steep)
+	{
+		ft_swap(&x0, &y1);
+		ft_swap(&x1, &y1);
+	}
+	if (x1 > x0)
+	{
+		ft_swap(&x0, &x1);
+		ft_swap(&y0, &y1);
+	}
+	fx = x0 - x1;
+	fy = y0 - y1;
+	gradient = fx / fy;
+	if (fy == 0.0)
+		gradient = 1;
+	intersect = x0;
+	y = y0;
+	if (steep)
+	{
+		while (y <= y1)
+		{
+			draw_pixel(ipartofnumber(intersect), y, fractolofnumber(intersect), mlx);
+			draw_pixel(ipartofnumber(intersect), y, fractolofnumber(intersect), mlx);
+			intersect += gradient;
+			y++;
+		}
+	}
+	else
+	{
+		while (y <= y1)
+		{
+			draw_pixel(y, ipartofnumber(intersect), fractolofnumber(intersect), mlx);
+			draw_pixel(y, ipartofnumber(intersect) - 1, fpartofnumber(intersect), mlx);
+			intersect += gradient;
+			y++;
+		}
+	}
+}
+
+void	which_line(int x0, int y0, int x1, int y1, t_fdf *mlx)
+{
+	if (x0 >= x1 && y0 >= y1)
+		drawaline_x(x0, y0, x1, y1, mlx);
+	else
+		drawaline_y(x0, y0, x1, y1, mlx);
+}
+
+
 // t_line				set_cordinates(int x, int y, t_fdf *mlx)
 // {
 // 	t_line	line;
@@ -79,34 +138,34 @@ void			drawaline(int x0, int y0, int x1, int y1, t_fdf *mlx)
 // 	return (line);
 // }
 
-void			draw_map(t_fdf *mlx)
-{
-	int		x;
-	int		y;
-	int		x1;
-	int		y1;
+// void			draw_map(t_fdf *mlx)
+// {
+// 	int		x;
+// 	int		y;
+// 	int		x1;
+// 	int		y1;
 
-	x = 0;
-	y = 0;
-	x1 = 40;
-	y1 = 40;
-	while (y < mlx->map->height)
-	{
-		x = 0;
-		while (x < mlx->map->width)
-		{
-			// start = set_cordinates(x, y, mlx);		
-			// end = set_cordinates(x + 1, y, mlx);
-			if (x + 1 <= mlx->map->width)
-				drawaline(x, x1, y, y1, mlx);
-			// end = set_cordinates(x, y + 1, mlx);
-			printf("x = %d y = %d\n", x, y);
-			if (y + 1 <= mlx->map->height)
-				drawaline(x, x1, y, y1, mlx);
-			x++;
-			x1++;
-		}
-		y++;
-		y1++;
-	}
-}
+// 	x = 0;
+// 	y = 0;
+// 	x1 = 40;
+// 	y1 = 40;
+// 	while (y < mlx->map->height)
+// 	{
+// 		x = 0;
+// 		while (x < mlx->map->width)
+// 		{
+// 			// start = set_cordinates(x, y, mlx);		
+// 			// end = set_cordinates(x + 1, y, mlx);
+// 			if (x + 1 <= mlx->map->width)
+// 				drawaline(x, x1, y, y1, mlx);
+// 			// end = set_cordinates(x, y + 1, mlx);
+// 			// printf("x = %d y = %d\n", x, y);
+// 			if (y + 1 <= mlx->map->height)
+// 				drawaline(x, x1, y, y1, mlx);
+// 			x++;
+// 			x1++;
+// 		}
+// 		y++;
+// 		y1++;
+// 	}
+// }

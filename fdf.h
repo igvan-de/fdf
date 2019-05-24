@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/22 19:18:22 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/24 14:23:02 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct 		s_fdf
 // }					t_line;
 
 void	window_display(t_fdf *mlx);
-void	drawaline(int x0, int y0, int x1, int y1, t_fdf *mlx);
+void	which_line(int x0, int x1, int y0, int y1, t_fdf *mlx);
 void	draw_map(t_fdf *mlx);
 
 int		main(int ag, char **av);

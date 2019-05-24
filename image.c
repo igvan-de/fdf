@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 12:05:50 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/22 18:42:15 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/24 14:29:06 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int		image_window(t_fdf *mlx)
 	mlx_clear_window(mlx->mlx_ptr, mlx->window);
 	mlx->image = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	mlx->placement = mlx_put_image_to_window(mlx->mlx_ptr, mlx->window, mlx->image, 650, 450);
-	draw_map(mlx);
+	which_line(0, 150, 100, 200, mlx);
+	// draw_map(mlx);
 	return (0);
 }
 
