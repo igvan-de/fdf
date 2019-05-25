@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/24 20:29:53 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/25 17:55:41 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,63 +19,71 @@ static int		put_pixel(int x, int y, t_fdf *mlx)
 	return (0);
 }
 
-static void	plotlineLow(int y, int x, int a, int b, t_fdf *mlx)
+static void	drawlineLow(int y, int x, t_point a, t_point b, t_fdf *mlx)
 {
 	int		delta;
-	int		i;
 
 	delta = (2 * y) - x;
-	i = 0;
-	while (i < mlx->map->width)
+	while (a.x < b.x || a.x > b.x)
 	{
-		put_pixel(a, b, mlx);
+		put_pixel(a.x, a.y, mlx);
 		if (delta > 0)
 		{
-			i++;
+			if (a.x < b.x)
+				a.y++;
+			if (a.x > b.x)
+				a.y--;
 			delta = delta - (2 * x);
 		}
 		delta = delta + (2 * y);
+		if (a.x < b.x)
+			a.x++;
+		if (a.x > b.x)
+			a.x--;
 	}
 }
 
-static void	plotlineHigh(int y, int x, t_point a, t_point b, t_fdf *mlx)
+static void	drawlineHigh(int y, int x, t_point a, t_point b, t_fdf *mlx)
 {
 	int		delta;
 
 	printf("test2\n");
-	delta = (2*x) - y;
-	while (b.y < mlx->map->height)
+	delta = (2 * x) - y;
+	while (a.y < b.y || a.y > b.y)
 	{
-		put_pixel(a.y, b.y, mlx);
+		put_pixel(a.x, a.y, mlx);
 		if (delta > 0)
 		{
-			x++;
+			if (a.y < b.y)
+				a.x++;
+			if (a.y > b.y)
+				a.x--;
 			delta = delta - (2 * y);
 		}
 		delta = delta + (2 * x);
+		if (a.y < b.y)
+			a.y++;
+		if (a.y > b.y)
+			a.y--;
 	}
 }
 
-void		draw_lines(t_point a, t_point b, t_fdf *mlx)
+void		plotlines(t_point a, t_point b, t_fdf *mlx)
 {
 	int		delta_x;
 	int		delta_y;
 
 	delta_x = (b.x - a.x);
 	delta_y = (b.y - a.y);
-	if (delta_x < 0 || delta_y < 0)	//Na deze if statement zijn a.x & a.y altijd groter dan b.x & b.y!
-	{
-		ft_swap(&a.x, &b.x);
-		ft_swap(&b.y, &b.y);
-		if (delta_x < 0)
-			delta_x = -delta_x;
-		if (delta_y < 0)
-			delta_y = -delta_y;
-	}
-	if (ABS(a.y - b.y) > ABS(a.x - b.x))
-		plotlineLow(delta_y, delta_x, a.x, b.x, mlx);
+	if (delta_x < 0)
+		delta_x = -delta_x;
+	if (delta_y < 0)
+		delta_y = -delta_y;
+	//printf("a.x = %d b.x = %d a.y = %d b.y = %d\n", a.x, b.x, a.y, b.y);
+	if ((b.y - a.y) < (b.x - a.x))
+		drawlineLow(delta_y, delta_x, a, b, mlx);
 	else
-		plotlineHigh(delta_y, delta_x, a, b, mlx);
+		drawlineLow(delta_y, delta_x, a, b, mlx);
 }
 
 int test(t_fdf *mlx)
@@ -83,10 +91,10 @@ int test(t_fdf *mlx)
 	t_point a;
 	t_point b;
 
-	a.x = 200;
-	a.y = 100;
-	b.x = 100;
-	b.y = 300;
-	draw_lines(a, b, mlx);
+	a.x = 300;	//x0
+	a.y = 300;	//y0
+	b.x = 100;	//x1
+	b.y = 50;	//y1
+	plotlines(a, b, mlx);
 	return (0);
 }

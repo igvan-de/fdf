@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/24 20:11:42 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/25 17:29:52 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 #define KEY_RIGHT 124
 #define KEY_DOWN 125
 
-#define ABS(x) (x) < 0 ? (x) * -1 : (x) ///Is this allowed?
+#define ABS(x) (x) < 0 ? (x) * -1 : (x) ///Create function for this!!!
 
 typedef struct 		s_map
 {
@@ -61,7 +61,7 @@ typedef struct 		s_fdf
 }					t_fdf;
 
 void	window_display(t_fdf *mlx);
-void	draw_lines(t_point a, t_point b, t_fdf *mlx);
+void	plotlines(t_point a, t_point b, t_fdf *mlx);
 
 int 	test(t_fdf *mlx); ////Remove, is only to test!!!
 
