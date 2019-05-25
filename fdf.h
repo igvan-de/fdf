@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/25 17:29:52 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/25 19:37:57 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct 		s_fdf
 	int				placement;
 	int				x;
 	int				y;
+	int				negative;
 	t_map			*map;
 }					t_fdf;
 
