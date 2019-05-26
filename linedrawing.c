@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/26 19:36:54 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/26 20:37:51 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void		drawlineHigh(t_point a, t_point b, t_fdf *mlx)
 
 static void		plotlines(t_point a, t_point b, t_fdf *mlx)
 {
+	// printf("a.y = %d b.y = %d\n", a.y, b.y);
 	mlx->delta->delta_x = (b.x - a.x);
 	mlx->delta->delta_y = (b.y - a.y);
 	if (mlx->delta->delta_x < 0)
@@ -80,17 +81,18 @@ static void		plotlines(t_point a, t_point b, t_fdf *mlx)
 		mlx->negative = -1;
 		mlx->delta->delta_y = -mlx->delta->delta_y;
 	}
-	if ((b.y - a.y) < (b.x - a.x))
-		drawlineHigh(a, b, mlx);
-	else
-		drawlineLow(a, b, mlx);
+	// if ((b.y - a.y) < (b.x - a.x))
+	drawlineHigh(a, b, mlx);
+	drawlineLow(a, b, mlx);
+	// else
 }
 
-static t_point scale(int x, t_fdf *mlx)
+static t_point scale(int x, int y, t_fdf *mlx)
 {
 	t_point line;
 
 	line.x = x * 30;
+	line.y = y * 30;
 	return (line);
 }
 
@@ -103,12 +105,13 @@ int			draw_grid(t_fdf *mlx)
 	y = 0;
 	while (y < mlx->map->height)
 	{
+		x = 0;
 		while (x < mlx->map->width)
 		{
-			if (x + 1 <= mlx->map->width)
-				plotlines(scale(x, mlx), scale(y, mlx), mlx);
-			if (y + 1 <= mlx->map->height)
-				plotlines(scale(x, mlx), scale(y, mlx), mlx);
+			if (x + 1 <= mlx->map->width && y + 1 <= mlx->map->height)
+				plotlines(scale(x, y, mlx), scale(x + 1, y + 1, mlx), mlx);
+			// if (y <= mlx->map->height)
+			// 	plotlines(scale(x, y, mlx), scale(x + 1, y + 1, mlx), mlx);
 			x++;
 		}
 		y++;
