@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/26 15:16:18 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/26 19:35:28 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct 		s_fdf
 
 void	window_display(t_fdf *mlx);
 
-int 	test(t_fdf *mlx); ////Remove, is only to test!!!
+int		draw_grid(t_fdf *mlx); ////Remove, is only to test!!!
 
 int		main(int ag, char **av);
 int     **set_field(char *file, t_map *field);

@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/26 19:04:20 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/26 19:36:54 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,34 +86,32 @@ static void		plotlines(t_point a, t_point b, t_fdf *mlx)
 		drawlineLow(a, b, mlx);
 }
 
-static void	scale(int x)
+static t_point scale(int x, t_fdf *mlx)
 {
-	x = x * 30;
+	t_point line;
+
+	line.x = x * 30;
+	return (line);
 }
 
-int				test(t_fdf *mlx)
+int			draw_grid(t_fdf *mlx)
 {
-	t_point a;
-	t_point b;
+	int	x;
+	int	y;
 
-	a.x = 0;
-	a.y = 0;	//y0
-	b.y = 0;	//y1
-	while (b.y < mlx->map->height)
+	x = 0;
+	y = 0;
+	while (y < mlx->map->height)
 	{
-		b.x = 0;
-		while (b.x < mlx->map->width)
+		while (x < mlx->map->width)
 		{
-			if (b.x <= mlx->map->width)
-				plotlines(scale_x(x), y, mlx);
-			if (b.y <= mlx->map->width)
-				plotlines(x, y, mlx);
-			a.x++;
-			b.x++;
-			printf("a.x= %d b.x = %d a.y = %d b.y = %d\n", a.x, b.x, a.y, b.y);
+			if (x + 1 <= mlx->map->width)
+				plotlines(scale(x, mlx), scale(y, mlx), mlx);
+			if (y + 1 <= mlx->map->height)
+				plotlines(scale(x, mlx), scale(y, mlx), mlx);
+			x++;
 		}
-		a.y++;
-		b.y++;
+		y++;
 	}
 	return (0);
 }
