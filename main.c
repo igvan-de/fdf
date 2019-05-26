@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 11:41:41 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/25 19:46:43 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/26 15:22:28 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ static void		menu(void)
 int				main(int ag, char **av)
 {
 	t_fdf	*mlx;
+
 	if (ag == 1)
 		return (put_input());
 	mlx = (t_fdf*)ft_memalloc(sizeof(t_fdf));
 	mlx->map = (t_map*)ft_memalloc(sizeof(t_map));
+	mlx->delta = (t_point*)ft_memalloc(sizeof(t_point));
 	mlx->mlx_ptr = mlx_init();
 	set_field(av[1], mlx->map);
 	if (ag == 3 && ft_strequ(av[2], "--menu"))

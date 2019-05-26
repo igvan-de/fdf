@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/25 19:37:57 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/26 15:16:18 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct		s_point
 {
 	int				x;
 	int				y;
+	int				delta_x;
+	int				delta_y;
 }					t_point;
 
 typedef struct 		s_fdf
@@ -59,10 +61,10 @@ typedef struct 		s_fdf
 	int				y;
 	int				negative;
 	t_map			*map;
+	t_point			*delta;
 }					t_fdf;
 
 void	window_display(t_fdf *mlx);
-void	plotlines(t_point a, t_point b, t_fdf *mlx);
 
 int 	test(t_fdf *mlx); ////Remove, is only to test!!!
 
