@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/26 20:37:51 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/27 18:33:37 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static void		drawlineHigh(t_point a, t_point b, t_fdf *mlx)
 
 static void		plotlines(t_point a, t_point b, t_fdf *mlx)
 {
-	// printf("a.y = %d b.y = %d\n", a.y, b.y);
 	mlx->delta->delta_x = (b.x - a.x);
 	mlx->delta->delta_y = (b.y - a.y);
 	if (mlx->delta->delta_x < 0)
@@ -81,10 +80,10 @@ static void		plotlines(t_point a, t_point b, t_fdf *mlx)
 		mlx->negative = -1;
 		mlx->delta->delta_y = -mlx->delta->delta_y;
 	}
-	// if ((b.y - a.y) < (b.x - a.x))
-	drawlineHigh(a, b, mlx);
-	drawlineLow(a, b, mlx);
-	// else
+	if (ABS(b.y - a.y) < ABS(b.x - a.x))
+		drawlineHigh(a, b, mlx);
+	else
+		drawlineLow(a, b, mlx);
 }
 
 static t_point scale(int x, int y, t_fdf *mlx)
@@ -93,6 +92,10 @@ static t_point scale(int x, int y, t_fdf *mlx)
 
 	line.x = x * 30;
 	line.y = y * 30;
+	line.z = mlx->map->map[y][x] * 10;
+	line = rotation_x(line, mlx);
+	line = rotation_y(line, mlx);
+	line = rotation_z(line, mlx);
 	return (line);
 }
 
@@ -108,10 +111,10 @@ int			draw_grid(t_fdf *mlx)
 		x = 0;
 		while (x < mlx->map->width)
 		{
-			if (x + 1 <= mlx->map->width && y + 1 <= mlx->map->height)
-				plotlines(scale(x, y, mlx), scale(x + 1, y + 1, mlx), mlx);
-			// if (y <= mlx->map->height)
-			// 	plotlines(scale(x, y, mlx), scale(x + 1, y + 1, mlx), mlx);
+			if (x + 1 < mlx->map->width)
+				plotlines(scale(x, y, mlx), scale(x + 1, y, mlx), mlx);
+			if (y + 1 < mlx->map->height)
+				plotlines(scale(x, y, mlx), scale(x, y + 1, mlx), mlx);
 			x++;
 		}
 		y++;

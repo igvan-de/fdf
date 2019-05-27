@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   field.c                                            :+:    :+:            */
+/*   map.c                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/16 15:11:06 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/24 17:22:31 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/27 18:03:09 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int		**read_field(char *file, t_map *field, int y)
 	x = 0;
 	ret = 1;
 	field->map = (int**)ft_memalloc(sizeof(int*) * y);
+	y = 0;
 	fd = open(file, O_RDONLY);
 	while (ret > 0)
 	{
@@ -43,6 +44,7 @@ static int		**read_field(char *file, t_map *field, int y)
 			field->map[y][x] = ft_atoi(tab[x]);
 		}
 		free(line);
+		y++;
 		if (ret == -1)
 			break ;
 	}
