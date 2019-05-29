@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/29 15:39:55 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/29 16:43:25 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@
 #define KEY_LEFT 123
 #define KEY_RIGHT 124
 #define KEY_DOWN 125
-#define ROTATE_UP 13
-#define ROTATE_LEFT 0
-#define ROTATE_RIGHT 2
-#define ROTATE_DOWN 1
+#define ROTATE_UP 0		//changed with left button
+#define ROTATE_LEFT 13
+#define ROTATE_RIGHT 1	//changed with right button
+#define ROTATE_DOWN 2
 
 #define ABS(x) ((x) < 0) ? (-x) : (x) ///Create function for this!!!
 
@@ -75,7 +75,7 @@ typedef struct 		s_fdf
 
 void	window_display(t_fdf *mlx);
 
-int		draw_grid(t_fdf *mlx); ////Remove, is only to test!!!
+int		draw_grid(t_fdf *mlx);
 
 int		main(int ag, char **av);
 int     **set_field(char *file, t_map *field);

@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 13:34:37 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/27 18:32:30 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/29 16:51:01 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ int					key_press(int key, t_fdf *mlx)
 	if (key == KEY_LEFT) //&& mlx->x >= -40) to make sure it doenst go outside the window
 		mlx->x -= 10;
 	if (key == ROTATE_DOWN)
-		mlx->delta->alpha += 0.05;
-	if (key == ROTATE_RIGHT)
 		mlx->delta->beta += 0.05;
+	if (key == ROTATE_RIGHT)
+		mlx->delta->alpha += 0.05;
 	if (key == ROTATE_LEFT)
-		mlx->delta->beta -= 0.05;
-	if (key == ROTATE_DOWN)
 		mlx->delta->alpha -= 0.05;
+	if (key == ROTATE_DOWN)
+		mlx->delta->beta -= 0.05;
+		// printf("beta = %f\n", mlx->delta->beta);
 	// ft_printf("%d\n", key);// To check which keynode has which value
 	return (0);
 }

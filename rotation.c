@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/27 15:34:22 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/29 15:41:37 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/29 16:41:48 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_point		rotation_y(t_point cordinate, t_fdf *mlx)
 	double		tempy;
 	double		tempz;
 
+	// printf("beta = %f\n", mlx->delta->beta);
 	tempx = (cordinate.x * cos(mlx->delta->beta)) + (cordinate.z * sin(mlx->delta->beta));
 	tempy = cordinate.y;
 	tempz = (-cordinate.x * sin(mlx->delta->beta)) + (cordinate.z * cos(mlx->delta->beta));

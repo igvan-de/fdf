@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 11:41:41 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/27 17:50:59 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/29 16:28:20 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ static void		menu(void)
 	ft_printf("BUTTONS GUIDE\n");
 	ft_printf("\033[0m");
 	ft_printf("Keyboard movements:\n Up	↑\n Left  ← →  Right\n Down	↓\n");
+	ft_printf("\033[0;35m");
+	ft_printf("'A' ");
+	ft_printf("\033[0m");
+	ft_printf("rotate to left\n");
+	ft_printf("\033[0;35m");
+	ft_printf("'D' ");
+	ft_printf("\033[0m");
+	ft_printf("rotate to right\n");
 }
 
 int				main(int ag, char **av)
