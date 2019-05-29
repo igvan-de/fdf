@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/29 12:47:34 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/29 15:52:22 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,8 @@
 static int		put_pixel(int x, int y, t_fdf *mlx)
 {
 	mlx_clear_window(mlx->mlx_ptr, mlx->window);
-	mlx_pixel_put(mlx->mlx_ptr, mlx->window, x,
-	y, yellow);
-	return (0);
-}
-
-static int		set_pixel(t_point a, t_point b, t_fdf *mlx)
-{
-	int		x;
-	int		y;
-
-	x = a.x;
-	y = a.y;
-	put_pixel(x, y, mlx);
+	mlx_pixel_put(mlx->mlx_ptr, mlx->window, 400 + x + mlx->x,
+	100 + y + mlx->y, blue);
 	return (0);
 }
 
@@ -44,7 +33,6 @@ static void		drawlineLow(t_point a, t_point b, t_fdf *mlx)
 		mlx->increase = -1;
 		mlx->delta->delta_y *= -1;
 	}
-	printf("DY = %d\n", mlx->delta->delta_y);
 	delta = (2 * mlx->delta->delta_y) - mlx->delta->delta_x;
 	cur_point = a;
 	while (cur_point.x < b.x)
@@ -114,8 +102,8 @@ static t_point scale(int x, int y, t_fdf *mlx)
 {
 	t_point line;
 
-	line.x = x * 30;
-	line.y = y * 30;
+	line.x = x * 15;
+	line.y = y * 15;
 	line.z = mlx->map->map[y][x] * 10;
 	line = rotation_x(line, mlx);
 	line = rotation_y(line, mlx);
@@ -123,22 +111,14 @@ static t_point scale(int x, int y, t_fdf *mlx)
 	return (line);
 }
 
-int			draw_grid(t_fdf *mlx)
+int				draw_grid(t_fdf *mlx)
 {
 	int	x;
 	int	y;
 
 	x = 0;
 	y = 0;
-	// plotlines((t_point) {0, 0}, (t_point){ WIDTH / 2, HEIGHT / 2}, mlx);
-	// plotlines((t_point) {WIDTH / 2, 0}, (t_point){ WIDTH / 2, HEIGHT / 2}, mlx);
-	// plotlines((t_point) {WIDTH, 0}, (t_point){ WIDTH / 2, HEIGHT / 2}, mlx);
-	// plotlines((t_point) {WIDTH, HEIGHT / 2}, (t_point){ WIDTH / 2, HEIGHT / 2}, mlx);
-	// plotlines((t_point) {WIDTH, HEIGHT}, (t_point){ WIDTH / 2, HEIGHT / 2}, mlx);
-	plotlines((t_point) {WIDTH / 2, HEIGHT}, (t_point){ WIDTH / 2, HEIGHT / 2}, mlx);
-	// plotlines((t_point) {0, HEIGHT}, (t_point){ WIDTH / 2, HEIGHT / 2}, mlx);
-	// plotlines((t_point) {0, HEIGHT / 2}, (t_point){ WIDTH / 2, HEIGHT / 2}, mlx);
-	/*while (y < mlx->map->height)
+	while (y < mlx->map->height)
 	{
 		x = 0;
 		while (x < mlx->map->width)
@@ -150,6 +130,6 @@ int			draw_grid(t_fdf *mlx)
 			x++;
 		}
 		y++;
-	}*/
+	}
 	return (0);
 }
