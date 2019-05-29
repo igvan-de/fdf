@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/27 17:49:59 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/05/29 12:30:02 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 #define ROTATE_RIGHT 2
 #define ROTATE_DOWN 1
 
-#define ABS(x) (x) < 0 ? (x) * -1 : (x) ///Create function for this!!!
+#define ABS(x) ((x) < 0) ? (-x) : (x) ///Create function for this!!!
 
 typedef struct 		s_map
 {
@@ -68,7 +68,7 @@ typedef struct 		s_fdf
 	int				placement;
 	int				x;
 	int				y;
-	int				negative;
+	int				increase;
 	t_map			*map;
 	t_point			*delta;
 }					t_fdf;
