@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 13:34:37 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/03 13:12:57 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/03 13:37:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ int					key_press(int key, t_fdf *mlx)
 		mlx->delta->beta -= 0.05;
 	if (key == ROTATE_UP)
 		mlx->delta->alpha -= 0.05;
-	if ( key == R)
+	if (key == R)
 		reset_grid(mlx);
+	// if (key == PLUS)
+	// 	mlx->map->map[y][x] += 10;
+	// if (key == MIN)
+	// 	mlx->map->map[y][x] -= 10;
 	// printf("alpha = %f\n", mlx->delta->alpha);
 	// ft_printf("%d\n", key);// To check which keynode has which value
 	return (0);

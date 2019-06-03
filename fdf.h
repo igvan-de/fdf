@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/03 13:13:26 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/03 15:12:10 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@
 #define ROTATE_RIGHT 2	//changed with right button
 #define ROTATE_DOWN 1
 #define R 15
+#define PLUS 69
+#define MIN 78
 
-#define ABS(x) ((x) < 0) ? (-x) : (x) ///Create function for this!!!
+#define ABS(x) ((x) < 0) ? (x * -1) : (x) ///Create function for this!!!
 
 typedef struct 		s_map
 {
@@ -76,7 +78,7 @@ typedef struct 		s_fdf
 
 void	window_display(t_fdf *mlx);
 
-int		draw_grid(t_fdf *mlx);
+double	draw_grid(t_fdf *mlx);
 
 int		main(int ag, char **av);
 int     **set_map(char *file, t_map *field);
