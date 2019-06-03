@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/29 16:43:25 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/03 13:13:26 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@
 #define KEY_LEFT 123
 #define KEY_RIGHT 124
 #define KEY_DOWN 125
-#define ROTATE_UP 0		//changed with left button
-#define ROTATE_LEFT 13
-#define ROTATE_RIGHT 1	//changed with right button
-#define ROTATE_DOWN 2
+#define ROTATE_UP 13		//changed with left button
+#define ROTATE_LEFT 0
+#define ROTATE_RIGHT 2	//changed with right button
+#define ROTATE_DOWN 1
+#define R 15
 
 #define ABS(x) ((x) < 0) ? (-x) : (x) ///Create function for this!!!
 
@@ -78,7 +79,7 @@ void	window_display(t_fdf *mlx);
 int		draw_grid(t_fdf *mlx);
 
 int		main(int ag, char **av);
-int     **set_field(char *file, t_map *field);
+int     **set_map(char *file, t_map *field);
 int		**map_error();
 int		put_input(void);
 int		image_window(t_fdf *mlx);

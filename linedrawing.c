@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/29 16:48:47 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/03 13:14:26 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static int		put_pixel(int x, int y, t_fdf *mlx)
 {
 	mlx_clear_window(mlx->mlx_ptr, mlx->window);
-	mlx_pixel_put(mlx->mlx_ptr, mlx->window, 400 + x + mlx->x,
-	100 + y + mlx->y, blue);
+	mlx_pixel_put(mlx->mlx_ptr, mlx->window, 420 + x + mlx->x,
+	200 + y + mlx->y, blue);
 	return (0);
 }
 
@@ -102,12 +102,13 @@ static t_point scale(int x, int y, t_fdf *mlx)
 {
 	t_point line;
 
-	line.x = x * 15;
-	line.y = y * 15;
+	line.x = x * 20;
+	line.y = y * 20;
 	line.z = mlx->map->map[y][x] * 10;
 	line = rotation_x(line, mlx);
 	line = rotation_y(line, mlx);
 	line = rotation_z(line, mlx);
+	// printf("x = %d, y = %d, z = %d\n", line.x, line.y, line.z);
 	return (line);
 }
 

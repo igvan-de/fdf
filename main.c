@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 11:41:41 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/29 16:28:20 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/03 11:45:52 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,18 @@ static void		menu(void)
 	ft_printf("BUTTONS GUIDE\n");
 	ft_printf("\033[0m");
 	ft_printf("Keyboard movements:\n Up	↑\n Left  ← →  Right\n Down	↓\n");
-	ft_printf("\033[0;35m");
-	ft_printf("'A' ");
-	ft_printf("\033[0m");
-	ft_printf("rotate to left\n");
-	ft_printf("\033[0;35m");
-	ft_printf("'D' ");
-	ft_printf("\033[0m");
-	ft_printf("rotate to right\n");
+	ft_printf("Press A to rotate to left\nPress D to rotate to right\n");
+}
+
+static void		set_mlx(t_fdf **mlx)
+{
+	*mlx = (t_fdf*)ft_memalloc(sizeof(t_fdf));
+	(*mlx)->map = (t_map*)ft_memalloc(sizeof(t_map));
+	(*mlx)->delta = (t_point*)ft_memalloc(sizeof(t_point));
+	(*mlx)->delta->alpha = 0;
+	(*mlx)->delta->beta = 0;
+	(*mlx)->delta->gamma = 0;
+	(*mlx)->mlx_ptr = mlx_init();
 }
 
 int				main(int ag, char **av)
@@ -34,14 +38,8 @@ int				main(int ag, char **av)
 
 	if (ag == 1)
 		return (put_input());
-	mlx = (t_fdf*)ft_memalloc(sizeof(t_fdf));
-	mlx->map = (t_map*)ft_memalloc(sizeof(t_map));
-	mlx->delta = (t_point*)ft_memalloc(sizeof(t_point));
-	mlx->delta->alpha = 0;
-	mlx->delta->beta = 0;
-	mlx->delta->gamma = 0;
-	mlx->mlx_ptr = mlx_init();
-	set_field(av[1], mlx->map);
+	set_mlx(&mlx);
+	set_map(av[1], mlx->map);
 	if (ag == 3 && ft_strequ(av[2], "--menu"))
 		menu();
 	window_display(mlx);
