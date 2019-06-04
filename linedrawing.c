@@ -6,19 +6,11 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/03 15:13:47 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 14:25:35 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static int		put_pixel(int x, int y, t_fdf *mlx)
-{
-	mlx_clear_window(mlx->mlx_ptr, mlx->window);
-	mlx_pixel_put(mlx->mlx_ptr, mlx->window, 420 + x + mlx->x,
-	200 + y + mlx->y, blue);
-	return (0);
-}
 
 static void		drawlineLow(t_point a, t_point b, t_fdf *mlx)
 {
@@ -98,7 +90,7 @@ static void		plotlines(t_point a, t_point b, t_fdf *mlx)
 	}
 }
 
-static t_point scale(int x, int y, t_fdf *mlx)
+static t_point	scale(int x, int y, t_fdf *mlx)
 {
 	t_point line;
 
@@ -111,7 +103,7 @@ static t_point scale(int x, int y, t_fdf *mlx)
 	return (line);
 }
 
-double				draw_grid(t_fdf *mlx)
+int				draw_grid(t_fdf *mlx)
 {
 	int	x;
 	int	y;

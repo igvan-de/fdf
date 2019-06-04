@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/11 14:28:44 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/20 18:59:57 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 14:09:52 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,12 @@
 void	window_display(t_fdf *mlx)
 {
 	mlx->window = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "FDF");
+}
+
+int		put_pixel(int x, int y, t_fdf *mlx)
+{
+	mlx_clear_window(mlx->mlx_ptr, mlx->window);
+	mlx_pixel_put(mlx->mlx_ptr, mlx->window, 420 + x + mlx->x,
+	200 + y + mlx->y, get_color(x, y, mlx));
+	return (0);
 }

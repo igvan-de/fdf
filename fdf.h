@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/03 15:12:10 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 13:54:52 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 #include <stdio.h> /* DELETE ME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 //check colors I want to use later
-#define yellow 0xf8d92b
-#define blue 0x469DFF
-#define green 0x31D75D
+// #define yellow 0xf8d92b
+// #define blue 0x469DFF
+// #define green 0x31D75D
 
 #define WIDTH 1250
 #define HEIGHT 800
@@ -42,8 +42,6 @@
 #define PLUS 69
 #define MIN 78
 
-#define ABS(x) ((x) < 0) ? (x * -1) : (x) ///Create function for this!!!
-
 typedef struct 		s_map
 {
 	int				height;
@@ -58,6 +56,7 @@ typedef struct		s_point
 	int				z;
 	int				delta_x;
 	int				delta_y;
+	int				color;
 	double			alpha;
 	double			beta;
 	double			gamma;
@@ -78,14 +77,16 @@ typedef struct 		s_fdf
 
 void	window_display(t_fdf *mlx);
 
-double	draw_grid(t_fdf *mlx);
+int			main(int ag, char **av);
+int     	**set_map(char *file, t_map *field);
+int			**map_error();
+int			put_input(void);
+int			put_pixel(int x, int y, t_fdf *mlx);
+int			image_window(t_fdf *mlx);
+int			key_press(int key, t_fdf *mlx);
+int			draw_grid(t_fdf *mlx);
 
-int		main(int ag, char **av);
-int     **set_map(char *file, t_map *field);
-int		**map_error();
-int		put_input(void);
-int		image_window(t_fdf *mlx);
-int		key_press(int key, t_fdf *mlx);
+int			get_color(int x, int y, t_fdf *mlx);
 
 t_point     rotation_x(t_point cordinate, t_fdf *mlx);
 t_point     rotation_y(t_point cordinate, t_fdf *mlx);
