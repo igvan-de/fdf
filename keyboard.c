@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 13:34:37 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/04 16:14:45 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 17:36:11 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ static void			reset_grid(t_fdf *mlx)
 	mlx->y = 0;
 	mlx->delta->alpha = 0;
 	mlx->delta->beta = 0;
+	mlx->delta->z_value = 10;
 }
 
-int					key_press(int key, t_fdf *mlx)
+static int			key_rotate_move(int key, t_fdf *mlx)
 {
-	if (key == KEY_ESC)
-		close_window(NULL);
 	if (key == KEY_DOWN)
 		mlx->y += 10;
 	if (key == KEY_RIGHT)
@@ -47,16 +46,26 @@ int					key_press(int key, t_fdf *mlx)
 		mlx->delta->beta -= 0.05;
 	if (key == ROTATE_UP)
 		mlx->delta->alpha -= 0.05;
+	return (0);
+}
+
+static int			key_change_value(int key, t_fdf *mlx)
+{
+	if (key == PLUS)
+		mlx->delta->z_value += 2;
+	if (key == MIN)
+		mlx->delta->z_value -= 2;
+	return (0);
+}
+
+int					key_press(int key, t_fdf *mlx)
+{
+	if (key == KEY_ESC)
+		close_window(NULL);
 	if (key == R)
 		reset_grid(mlx);
-	if (key == PLUS)
-		mlx->delta->z_value += 5;
-	if (key == MIN)
-		mlx->delta->z_value -= 5;
-	// if (key == PLUS)
-	// 	mlx->map->map[y][x] += 10;
-	// if (key == MIN)
-	// 	mlx->map->map[y][x] -= 10;
+	key_rotate_move(key, mlx);
+	key_change_value(key, mlx);
 	// printf("alpha = %f\n", mlx->delta->alpha);
 	// ft_printf("%d\n", key);// To check which keynode has which value
 	return (0);

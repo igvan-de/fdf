@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/03 16:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/04 16:17:54 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 17:57:16 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,25 @@ static double	percent(int start, int end, int current)
 	return ((distance == 0) ? 1.0 : (placement / distance));
 }
 
-int				get_light(int start, int end, double percentage)
+static int		get_light(int start, int end, double percentage)
 {
 	return ((int)((1 - percentage) * start + percentage * end));
 }
 
-int				get_color(int x, int y, t_fdf *mlx)
+static int		color(t_point a, t_point b, double percentage)
 {
 	int		green;
 	int		blue;
 	int		yellow;
+
+	green = get_light((a.color >> 16) & 0xFF, (b.color >> 16) & 0xFF, percentage);
+	blue = get_light((a.color >> 8) & 0xFF, (b.color >> 8) & 0xFF, percentage);
+	yellow = get_light(a.color & 0xFF, b.color & 0xFF, percentage);
+	return ((green << 16 | blue << 8 | yellow));
+}
+
+int				get_color(int x, int y, t_fdf *mlx)
+{
 	t_point	a;
 	t_point	b;
 	t_point	current;
@@ -49,8 +58,5 @@ int				get_color(int x, int y, t_fdf *mlx)
 		percentage = percent(a.x, b.x, current.x);
 	else
 		percentage = percent (a.y, b.y, current.y);
-	green = get_light((a.color >> 16) & 0xFF, (b.color >> 16) & 0xFF, percentage);
-	blue = get_light((a.color >> 8) & 0xFF, (b.color >> 8) & 0xFF, percentage);
-	yellow = get_light(a.color & 0xFF, b.color & 0xFF, percentage);
-	return ((green << 16 | blue << 8 | yellow));
+	return (color(a, b, percentage));
 }
