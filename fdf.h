@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/04 13:54:52 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 16:13:47 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FDF_H
 
 #include <unistd.h>
-#include <math.h>
 #include "./minilibx_macos/mlx.h"
 #include "./Libft/includes/libft.h"
 #include "./Libft/includes/get_next_line.h"
@@ -57,6 +56,7 @@ typedef struct		s_point
 	int				delta_x;
 	int				delta_y;
 	int				color;
+	int				z_value;
 	double			alpha;
 	double			beta;
 	double			gamma;

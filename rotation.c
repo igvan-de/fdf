@@ -6,11 +6,12 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/27 15:34:22 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/03 14:45:12 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 15:19:42 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <math.h>
 
 t_point		rotation_x(t_point cordinate, t_fdf *mlx)
 {

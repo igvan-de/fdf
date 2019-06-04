@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 11:41:41 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/03 11:45:52 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 16:15:39 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void		set_mlx(t_fdf **mlx)
 	(*mlx)->delta->beta = 0;
 	(*mlx)->delta->gamma = 0;
 	(*mlx)->mlx_ptr = mlx_init();
+	(*mlx)->delta->z_value = 10;
 }
 
 int				main(int ag, char **av)

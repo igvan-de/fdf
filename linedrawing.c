@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/04 14:25:35 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 16:18:13 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static t_point	scale(int x, int y, t_fdf *mlx)
 
 	line.x = x * 23;
 	line.y = y * 23;
-	line.z = mlx->map->map[y][x] * 10;
+	line.z = mlx->map->map[y][x] * mlx->delta->z_value;
 	line = rotation_x(line, mlx);
 	line = rotation_y(line, mlx);
 	line = rotation_z(line, mlx);

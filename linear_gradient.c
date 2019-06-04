@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/03 16:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/04 14:25:43 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/04 16:17:54 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int				get_color(int x, int y, t_fdf *mlx)
 	t_point	current;
 	double	percentage;
 
-	printf("x = %d\n", a.x);
-	printf("y = %d\n", a.y);
+	a.x = mlx->delta->x;
+	b.x = mlx->delta->x + 1;
+	a.y = mlx->delta->y;
+	b.y = mlx->delta->y + 1;
 	current.x = x;
-	// b.x = x + 1;
 	current.y = y;
-	// b.y = y + 1;
 	if (current.color == b.color)
 			return (current.color);
 	if (mlx->delta->delta_x > mlx->delta->delta_y)
