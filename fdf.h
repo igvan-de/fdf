@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 15:48:31 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 19:11:23 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ typedef struct 		s_fdf
 	int				y;
 	int				increase;
 	t_map			*map;
-	t_point			*delta;
+	t_point			*point;
 }					t_fdf;
 
-void	window_display(t_fdf *mlx);
+void		window_display(t_fdf *mlx);
 
 int			main(int ag, char **av);
 int     	**set_map(char *file, t_map *field);
@@ -87,14 +87,10 @@ int			put_pixel(int x, int y, t_fdf *mlx);
 int			image_window(t_fdf *mlx);
 int			key_press(int key, t_fdf *mlx);
 int			draw_grid(t_fdf *mlx);
-int			pick_color(t_point line, int z, t_fdf *mlx);
+int			set_color(int z, t_fdf *mlx);
 int			get_color(t_point current, t_point a, t_point b, t_fdf *mlx);
 
 t_point     rotation_x(t_point cordinate, t_fdf *mlx);
 t_point     rotation_y(t_point cordinate, t_fdf *mlx);
 t_point     rotation_z(t_point cordinate, t_fdf *mlx);
-
-t_point		save_a(t_point a);
-t_point		save_b(t_point b);
-
 #endif

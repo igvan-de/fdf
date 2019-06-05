@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 13:34:37 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 15:50:05 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 19:24:10 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ static void			reset_grid(t_fdf *mlx)
 {
 	mlx->x = 0;
 	mlx->y = 0;
-	mlx->delta->alpha = 0;
-	mlx->delta->beta = 0;
-	mlx->delta->z_value = 10;
+	mlx->point->alpha = 0;
+	mlx->point->beta = 0;
+	mlx->point->gamma = 0;
+	mlx->point->z_value = 10;
 }
 
 static int			key_rotate_move(int key, t_fdf *mlx)
@@ -39,26 +40,26 @@ static int			key_rotate_move(int key, t_fdf *mlx)
 	if (key == KEY_LEFT) //&& mlx->x >= -40) to make sure it doenst go outside the window
 		mlx->x -= 10;
 	if (key == ROTATE_DOWN)
-		mlx->delta->alpha += 0.05;
+		mlx->point->alpha += 0.05;
 	if (key == ROTATE_RIGHT)
-		mlx->delta->beta += 0.05;
+		mlx->point->beta += 0.05;
 	if (key == ROTATE_LEFT)
-		mlx->delta->beta -= 0.05;
+		mlx->point->beta -= 0.05;
 	if (key == ROTATE_UP)
-		mlx->delta->alpha -= 0.05;
+		mlx->point->alpha -= 0.05;
 	if (key == Z_LEFT)
-		mlx->delta->gamma -= 0.05;
+		mlx->point->gamma -= 0.05;
 	if (key == Z_RIGHT)
-		mlx->delta->gamma += 0.05;
+		mlx->point->gamma += 0.05;
 	return (0);
 }
 
 static int			key_change_value(int key, t_fdf *mlx)
 {
 	if (key == PLUS)
-		mlx->delta->z_value += 2;
+		mlx->point->z_value += 2;
 	if (key == MIN)
-		mlx->delta->z_value -= 2;
+		mlx->point->z_value -= 2;
 	return (0);
 }
 

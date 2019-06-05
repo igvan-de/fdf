@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/03 16:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 15:42:19 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 19:11:40 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,37 @@ static int		get_light(int start, int end, double percentage)
 
 static int		color(t_point a, t_point b, double percentage)
 {
+	int		red;
 	int		green;
 	int		blue;
-	int		yellow;
 
-	green = get_light((a.color >> 16) & 0xFF, (b.color >> 16) & 0xFF, percentage);
-	blue = get_light((a.color >> 8) & 0xFF, (b.color >> 8) & 0xFF, percentage);
-	yellow = get_light(a.color & 0xFF, b.color & 0xFF, percentage);
-	return ((green << 16 | blue << 8 | yellow));
+	red = get_light((a.color >> 16) & 0xFF, (b.color >> 16) & 0xFF, percentage);
+	green = get_light((a.color >> 8) & 0xFF, (b.color >> 8) & 0xFF, percentage);
+	blue = get_light(a.color & 0xFF, b.color & 0xFF, percentage);
+	return ((red << 16 | green << 8 | blue));
 }
 
-int			pick_color(t_point line, int z, t_fdf *mlx)
+int				set_color(int z, t_fdf *mlx)
 {
-	if (line.z == 0)
-		mlx->delta->color = ORANGE;
-	else if (line.z >= 10)
-		mlx->delta->color = BLUE;
-	else if (line.z < 0)
-		mlx->delta->color = GREEN;
-	return (line.z);
+	if (z == 0)
+		mlx->point->color = ORANGE;
+	else if (z >= 10)
+		mlx->point->color = BLUE;
+	else if (z < 0)
+		mlx->point->color = GREEN;
+	return (z);
 }
 
 int				get_color(t_point current, t_point a, t_point b, t_fdf *mlx)
 {
 	double	percentage;
 
-	current.color = mlx->delta->color;
-	printf("current = %x\n", current.color);
-	printf("b = %x\n", b.color);
+	// current.color = mlx->delta->color;
+	b.color = mlx->point->color;
+	// printf("current = %x\n", current.color);
 	if (current.color == b.color)
 		return (current.color);
-	if (mlx->delta->delta_x > mlx->delta->delta_y)
+	if (mlx->point->delta_x > mlx->point->delta_y)
 		percentage = percent(a.x, b.x, current.x);
 	else
 		percentage = percent(a.y, b.y, current.y);

@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 15:43:31 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 19:11:19 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ static void		drawlineLow(t_point a, t_point b, t_fdf *mlx)
 	int		delta;
 	t_point	cur_point;
 
-	mlx->delta->delta_x = (b.x - a.x);
-	mlx->delta->delta_y = (b.y - a.y);
+	mlx->point->delta_x = (b.x - a.x);
+	mlx->point->delta_y = (b.y - a.y);
 	mlx->increase = 1;
-	if (mlx->delta->delta_y < 0)
+	if (mlx->point->delta_y < 0)
 	{
 		mlx->increase = -1;
-		mlx->delta->delta_y *= -1;
+		mlx->point->delta_y *= -1;
 	}
-	delta = (2 * mlx->delta->delta_y) - mlx->delta->delta_x;
+	delta = (2 * mlx->point->delta_y) - mlx->point->delta_x;
 	cur_point = a;
 	while (cur_point.x < b.x)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->window, 420 + cur_point.x + mlx->x,
-		200 + cur_point.y + mlx->y, mlx->delta->color);
+		200 + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
 		if (delta > 0)
 		{
 			cur_point.y = cur_point.y + mlx->increase;
-			delta = delta - (2 * mlx->delta->delta_x);
+			delta = delta - (2 * mlx->point->delta_x);
 		}
-		delta = delta + (2 * mlx->delta->delta_y);
+		delta = delta + (2 * mlx->point->delta_y);
 		cur_point.x++;
 	}
 }
@@ -46,26 +46,26 @@ static void		drawlineHigh(t_point a, t_point b, t_fdf *mlx)
 	int		delta;
 	t_point	cur_point;
 
-	mlx->delta->delta_x = (b.x - a.x);
-	mlx->delta->delta_y = (b.y - a.y);
+	mlx->point->delta_x = (b.x - a.x);
+	mlx->point->delta_y = (b.y - a.y);
 	mlx->increase = 1;
-	if (mlx->delta->delta_x < 0)
+	if (mlx->point->delta_x < 0)
 	{
 		mlx->increase = -1;
-		mlx->delta->delta_x *= -1;
+		mlx->point->delta_x *= -1;
 	}
-	delta = (2 * mlx->delta->delta_x) - mlx->delta->delta_y;
+	delta = (2 * mlx->point->delta_x) - mlx->point->delta_y;
 	cur_point = a;
 	while (cur_point.y < b.y)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->window, 420 + cur_point.x + mlx->x,
-		200 + cur_point.y + mlx->y, mlx->delta->color);
+		200 + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
 		if (delta > 0)
 		{
 			cur_point.x = cur_point.x + mlx->increase;
-			delta = delta - (2 * mlx->delta->delta_y);
+			delta = delta - (2 * mlx->point->delta_y);
 		}
-		delta = delta + (2 * mlx->delta->delta_x);
+		delta = delta + (2 * mlx->point->delta_x);
 		cur_point.y++;
 	}
 }
@@ -98,8 +98,8 @@ static t_point	scale(int x, int y, t_fdf *mlx)
 
 	line.x = x * 23;
 	line.y = y * 23;
-	line.z = mlx->map->map[y][x] * mlx->delta->z_value;
-	pick_color(line, line.z, mlx);
+	line.z = mlx->map->map[y][x] * mlx->point->z_value;
+	line.color = set_color(line.z, mlx);
 	line = rotation_x(line, mlx);
 	line = rotation_y(line, mlx);
 	line = rotation_z(line, mlx);
