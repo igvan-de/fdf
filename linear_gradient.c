@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/03 16:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 14:10:20 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 15:42:19 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,24 @@ static int		color(t_point a, t_point b, double percentage)
 	return ((green << 16 | blue << 8 | yellow));
 }
 
+int			pick_color(t_point line, int z, t_fdf *mlx)
+{
+	if (line.z == 0)
+		mlx->delta->color = ORANGE;
+	else if (line.z >= 10)
+		mlx->delta->color = BLUE;
+	else if (line.z < 0)
+		mlx->delta->color = GREEN;
+	return (line.z);
+}
+
 int				get_color(t_point current, t_point a, t_point b, t_fdf *mlx)
 {
 	double	percentage;
 
 	current.color = mlx->delta->color;
+	printf("current = %x\n", current.color);
+	printf("b = %x\n", b.color);
 	if (current.color == b.color)
 		return (current.color);
 	if (mlx->delta->delta_x > mlx->delta->delta_y)

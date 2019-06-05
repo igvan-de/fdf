@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 14:01:11 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 15:48:31 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 #include <stdio.h> /* DELETE ME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 //check colors I want to use later
-// #define yellow 0xf8d92b
-// #define blue 0x469DFF
-// #define green 0x31D75D
+#define ORANGE 0xf98c1f
+#define BLUE 0x469DFF
+#define GREEN 0x50df20
 
 #define WIDTH 1250
 #define HEIGHT 800
@@ -40,6 +40,8 @@
 #define R 15
 #define PLUS 69
 #define MIN 78
+#define Z_LEFT 6
+#define Z_RIGHT 7
 
 typedef struct 		s_map
 {
@@ -53,10 +55,6 @@ typedef struct		s_point
 	int				x;
 	int				y;
 	int				z;
-	int				ax;
-	int				bx;
-	int				ay;
-	int				by;
 	int				delta_x;
 	int				delta_y;
 	int				color;
@@ -89,7 +87,7 @@ int			put_pixel(int x, int y, t_fdf *mlx);
 int			image_window(t_fdf *mlx);
 int			key_press(int key, t_fdf *mlx);
 int			draw_grid(t_fdf *mlx);
-
+int			pick_color(t_point line, int z, t_fdf *mlx);
 int			get_color(t_point current, t_point a, t_point b, t_fdf *mlx);
 
 t_point     rotation_x(t_point cordinate, t_fdf *mlx);

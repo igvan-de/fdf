@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 13:34:37 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/04 17:36:11 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 15:50:05 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ static int			key_rotate_move(int key, t_fdf *mlx)
 		mlx->delta->beta -= 0.05;
 	if (key == ROTATE_UP)
 		mlx->delta->alpha -= 0.05;
+	if (key == Z_LEFT)
+		mlx->delta->gamma -= 0.05;
+	if (key == Z_RIGHT)
+		mlx->delta->gamma += 0.05;
 	return (0);
 }
 

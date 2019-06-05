@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 14:09:02 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 15:43:31 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		drawlineLow(t_point a, t_point b, t_fdf *mlx)
 	while (cur_point.x < b.x)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->window, 420 + cur_point.x + mlx->x,
-		200 + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
+		200 + cur_point.y + mlx->y, mlx->delta->color);
 		if (delta > 0)
 		{
 			cur_point.y = cur_point.y + mlx->increase;
@@ -59,7 +59,7 @@ static void		drawlineHigh(t_point a, t_point b, t_fdf *mlx)
 	while (cur_point.y < b.y)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->window, 420 + cur_point.x + mlx->x,
-		200 + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
+		200 + cur_point.y + mlx->y, mlx->delta->color);
 		if (delta > 0)
 		{
 			cur_point.x = cur_point.x + mlx->increase;
@@ -99,12 +99,7 @@ static t_point	scale(int x, int y, t_fdf *mlx)
 	line.x = x * 23;
 	line.y = y * 23;
 	line.z = mlx->map->map[y][x] * mlx->delta->z_value;
-	if (line.z <= 0)
-		mlx->delta->color = 0x469DFF;
-	else if (line.z >= 10 && line.z < 15)
-		mlx->delta->color = 0xf8d92b;
-	else if (line.z >= 15)
-		mlx->delta->color = 0x31D75D;
+	pick_color(line, line.z, mlx);
 	line = rotation_x(line, mlx);
 	line = rotation_y(line, mlx);
 	line = rotation_z(line, mlx);
