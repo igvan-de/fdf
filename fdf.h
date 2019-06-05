@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/04 17:55:53 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 14:01:11 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ typedef struct		s_point
 	int				x;
 	int				y;
 	int				z;
+	int				ax;
+	int				bx;
+	int				ay;
+	int				by;
 	int				delta_x;
 	int				delta_y;
 	int				color;
@@ -86,10 +90,13 @@ int			image_window(t_fdf *mlx);
 int			key_press(int key, t_fdf *mlx);
 int			draw_grid(t_fdf *mlx);
 
-int			get_color(int x, int y, t_fdf *mlx);
+int			get_color(t_point current, t_point a, t_point b, t_fdf *mlx);
 
 t_point     rotation_x(t_point cordinate, t_fdf *mlx);
 t_point     rotation_y(t_point cordinate, t_fdf *mlx);
 t_point     rotation_z(t_point cordinate, t_fdf *mlx);
+
+t_point		save_a(t_point a);
+t_point		save_b(t_point b);
 
 #endif

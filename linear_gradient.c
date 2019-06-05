@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/03 16:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/04 17:57:16 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/05 14:10:20 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,16 @@ static int		color(t_point a, t_point b, double percentage)
 	return ((green << 16 | blue << 8 | yellow));
 }
 
-int				get_color(int x, int y, t_fdf *mlx)
+int				get_color(t_point current, t_point a, t_point b, t_fdf *mlx)
 {
-	t_point	a;
-	t_point	b;
-	t_point	current;
 	double	percentage;
 
-	a.x = mlx->delta->x;
-	b.x = mlx->delta->x + 1;
-	a.y = mlx->delta->y;
-	b.y = mlx->delta->y + 1;
-	current.x = x;
-	current.y = y;
+	current.color = mlx->delta->color;
 	if (current.color == b.color)
-			return (current.color);
+		return (current.color);
 	if (mlx->delta->delta_x > mlx->delta->delta_y)
 		percentage = percent(a.x, b.x, current.x);
 	else
-		percentage = percent (a.y, b.y, current.y);
+		percentage = percent(a.y, b.y, current.y);
 	return (color(a, b, percentage));
 }
