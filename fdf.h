@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 19:11:23 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/07 15:38:12 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 //check colors I want to use later
 #define ORANGE 0xf98c1f
+#define PURPLE 0x8c30e8
 #define BLUE 0x469DFF
 #define GREEN 0x50df20
 

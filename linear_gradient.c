@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/03 16:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 19:11:40 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/07 15:46:42 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@ static double	percent(int start, int end, int current)
 {
 	double	placement;
 	double	distance;
+	double	result;
 
 	placement = current - start;
 	distance = end - start;
-	return ((distance == 0) ? 1.0 : (placement / distance));
+	if (distance == 0)
+		result = 1.0;
+	else
+		result = placement / distance;
+	return (result);
 }
 
 static int		get_light(int start, int end, double percentage)
@@ -42,21 +47,21 @@ static int		color(t_point a, t_point b, double percentage)
 int				set_color(int z, t_fdf *mlx)
 {
 	if (z == 0)
-		mlx->point->color = ORANGE;
-	else if (z >= 10)
-		mlx->point->color = BLUE;
+		return (BLUE);
+	// else if (z >= 15 && z <= 40)
+	// 	return (PURPLE);
+	else if (z > 0)
+		return (GREEN);
 	else if (z < 0)
-		mlx->point->color = GREEN;
-	return (z);
+		return (PURPLE);
+	return (0);
 }
 
 int				get_color(t_point current, t_point a, t_point b, t_fdf *mlx)
 {
 	double	percentage;
 
-	// current.color = mlx->delta->color;
-	b.color = mlx->point->color;
-	// printf("current = %x\n", current.color);
+
 	if (current.color == b.color)
 		return (current.color);
 	if (mlx->point->delta_x > mlx->point->delta_y)
@@ -65,3 +70,9 @@ int				get_color(t_point current, t_point a, t_point b, t_fdf *mlx)
 		percentage = percent(a.y, b.y, current.y);
 	return (color(a, b, percentage));
 }
+
+
+// extra's!
+	// a.color = set_color(current.z, mlx);		for color change on the lines!!
+	// b.color = set_color(current.z, mlx);		for color change on the lines!!
+	// current = (t_point){mlx->point->color, mlx->point->color};  for disco!!!!

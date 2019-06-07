@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 19:11:19 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/07 17:21:00 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,16 @@ static void		plotlines(t_point a, t_point b, t_fdf *mlx)
 	if (abs(b.y - a.y) < abs(b.x - a.x))
 	{
 		if (a.x > b.x)
-		{
-			ft_swap(&a.x, &b.x);
-			ft_swap(&a.y, &b.y);
-		}
-		drawlineLow(a, b, mlx);
+			drawlineLow(b, a, mlx);
+		else
+			drawlineLow(a, b, mlx);
 	}
 	else
 	{
 		if (a.y > b.y)
-		{
-			ft_swap(&a.x, &b.x);
-			ft_swap(&a.y, &b.y);
-		}
-		drawlineHigh(a, b, mlx);
+			drawlineHigh(b, a, mlx);
+		else
+			drawlineHigh(a, b, mlx);
 	}
 }
 
