@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/03 16:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/08 17:28:40 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/08 19:52:31 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,3 @@ int				get_color(t_point current, t_point a, t_point b, t_fdf *mlx)
 		percentage = percent(a.y, b.y, current.y);
 	return (color(a, b, percentage));
 }
-
-
-// extra's!
-	// current = (t_point){mlx->point->color, mlx->point->color};//  for disco!!!!
-	// a.color = set_color(current.z, mlx);//		for color change on the lines!!
-	// b.color = set_color(current.z, mlx);//		for color change on the lines!!

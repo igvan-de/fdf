@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 13:34:37 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/08 18:17:45 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/08 19:48:29 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int			key_rotate_move(int key, t_fdf *mlx)
 		mlx->x += 10;
 	if (key == KEY_UP)
 		mlx->y -= 10;
-	if (key == KEY_LEFT) //&& mlx->x >= -40) to make sure it doenst go outside the window
+	if (key == KEY_LEFT)
 		mlx->x -= 10;
 	if (key == ROTATE_DOWN)
 		mlx->point->alpha += 0.05;
@@ -74,9 +74,9 @@ int					key_press(int key, t_fdf *mlx)
 	return (0);
 }
 
-int				key_release(int key, t_fdf *mlx)
+int					key_release(int key, t_fdf *mlx)
 {
 	if (key == CONTROL)
 		mlx->point->keydown = 0;
-	return (0);	
+	return (0);
 }

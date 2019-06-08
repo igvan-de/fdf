@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/08 18:16:20 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/08 19:42:35 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 
 //check colors I want to use later
 #define ORANGE 0xf98c1f
-#define PURPLE 0x8c30e8
-#define BLUE 0x469DFF
-#define GREEN 0x50df20
+#define PURPLE 0xf2460d
+#define BLUE 0xffff99
+#define GREEN 0x6666ff
 
 #define WIDTH 1250
 #define HEIGHT 800
 #define PRESS_DOWN 2
 #define PRESS_UP 3
-#define PLACING_X 420
-#define PLACING_Y 200
+#define PLACE_X 420
+#define PLACE_Y 200
 #define X_SIZE 650
 #define Y_SIZE 550
 
@@ -110,4 +110,7 @@ int			get_color(t_point current, t_point a, t_point b, t_fdf *mlx);
 t_point     rotation_x(t_point cordinate, t_fdf *mlx);
 t_point     rotation_y(t_point cordinate, t_fdf *mlx);
 t_point     rotation_z(t_point cordinate, t_fdf *mlx);
+
+//Check pylone
+
 #endif

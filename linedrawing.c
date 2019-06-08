@@ -6,13 +6,13 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/08 17:53:38 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/08 19:45:11 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		drawlineLow(t_point a, t_point b, t_fdf *mlx)
+static void		drawlinelow(t_point a, t_point b, t_fdf *mlx)
 {
 	int		delta;
 	t_point	cur_point;
@@ -29,8 +29,8 @@ static void		drawlineLow(t_point a, t_point b, t_fdf *mlx)
 	cur_point = a;
 	while (cur_point.x < b.x)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->window, PLACING_X + cur_point.x + mlx->x,
-		PLACING_Y + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
+		mlx_pixel_put(mlx->mlx_ptr, mlx->window, PLACE_X + cur_point.x + mlx->x,
+		PLACE_Y + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
 		if (delta > 0)
 		{
 			cur_point.y = cur_point.y + mlx->increase;
@@ -41,7 +41,7 @@ static void		drawlineLow(t_point a, t_point b, t_fdf *mlx)
 	}
 }
 
-static void		drawlineHigh(t_point a, t_point b, t_fdf *mlx)
+static void		drawlinehigh(t_point a, t_point b, t_fdf *mlx)
 {
 	int		delta;
 	t_point	cur_point;
@@ -58,8 +58,8 @@ static void		drawlineHigh(t_point a, t_point b, t_fdf *mlx)
 	cur_point = a;
 	while (cur_point.y < b.y)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->window, PLACING_X + cur_point.x + mlx->x,
-		PLACING_Y + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
+		mlx_pixel_put(mlx->mlx_ptr, mlx->window, PLACE_X + cur_point.x + mlx->x,
+		PLACE_Y + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
 		if (delta > 0)
 		{
 			cur_point.x = cur_point.x + mlx->increase;
@@ -75,16 +75,16 @@ static void		plotlines(t_point a, t_point b, t_fdf *mlx)
 	if (abs(b.y - a.y) < abs(b.x - a.x))
 	{
 		if (a.x > b.x)
-			drawlineLow(b, a, mlx);
+			drawlinelow(b, a, mlx);
 		else
-			drawlineLow(a, b, mlx);
+			drawlinelow(a, b, mlx);
 	}
 	else
 	{
 		if (a.y > b.y)
-			drawlineHigh(b, a, mlx);
+			drawlinehigh(b, a, mlx);
 		else
-			drawlineHigh(a, b, mlx);
+			drawlinehigh(a, b, mlx);
 	}
 }
 
