@@ -6,26 +6,29 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/16 15:11:06 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/03 11:46:07 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/08 17:44:03 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <fcntl.h>
 
-static int		**read_map(char *file, t_map *map, int y)
+static int		**check_map(t_map *map, int x)
+{
+	if (map->width == 0)
+		map->width = x;
+	if (x != map->width)
+		return (map_error());
+	return (0);
+}
+
+static int		**twodimencional_array(int fd, t_map *map, int y, int x)
 {
 	char	*line;
 	char	**tab;
-	int		fd;
-	int		x;
 	int		ret;
 
-	x = 0;
 	ret = 1;
-	map->map = (int**)ft_memalloc(sizeof(int*) * y);
-	y = 0;
-	fd = open(file, O_RDONLY);
 	while (ret > 0)
 	{
 		ret = get_next_line(fd, &line);
@@ -33,10 +36,7 @@ static int		**read_map(char *file, t_map *map, int y)
 			return (map->map);
 		tab = ft_strsplit(line, ' ');
 		x = ft_arraylen(tab);
-		if (map->width == 0)
-			map->width = x;
-		if (x != map->width)
-			return (map_error());
+		check_map(map, x);
 		map->map[y] = (int*)ft_memalloc(sizeof(int) * x);
 		while (x > 0)
 		{
@@ -48,6 +48,19 @@ static int		**read_map(char *file, t_map *map, int y)
 		if (ret == -1)
 			break ;
 	}
+	return (map->map);
+}
+
+static int		**read_map(char *file, t_map *map, int y)
+{
+	int		fd;
+	int		x;
+
+	x = 0;
+	map->map = (int**)ft_memalloc(sizeof(int*) * y);
+	y = 0;
+	fd = open(file, O_RDONLY);
+	twodimencional_array(fd, map, y, x);
 	close(fd);
 	return (map->map);
 }

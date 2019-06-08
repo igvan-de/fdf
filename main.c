@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 11:41:41 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/05 19:27:47 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/08 18:16:27 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ static void		menu(void)
 	ft_printf("Keyboard movements:\n Up	↑\n Left  ← →  Right\n Down	↓\n");
 	ft_printf("Press A to rotate to left\nPress D to rotate to right\n");
 	ft_printf("Press W to rotate upwards\nPress S to rotate downwards\n");
-	ft_printf("Press Z to rotate z_value to left\nPress X to rotate z_value to right\n");
+	ft_printf("Press Z to rotate z_value to left\n");
+	ft_printf("Press X to rotate z_value to right\n");
 	ft_printf("Press + to increase z_value\nPress - to decrease z_value\n");
+	ft_printf("Press CTRL + to increase z_value\n");
+	ft_printf("Press CTRL - to decrease z_value\n");
 }
 
 static void		set_mlx(t_fdf **mlx)
@@ -34,11 +37,12 @@ static void		set_mlx(t_fdf **mlx)
 	(*mlx)->point->gamma = 0;
 	(*mlx)->mlx_ptr = mlx_init();
 	(*mlx)->point->z_value = 10;
+	(*mlx)->point->zoom = 13;
 }
 
 int				main(int ag, char **av)
 {
-	t_fdf	*mlx;	
+	t_fdf	*mlx;
 
 	if (ag == 1)
 		return (put_input());
@@ -49,7 +53,8 @@ int				main(int ag, char **av)
 	window_display(mlx);
 	image_window(mlx);
 	mlx_loop_hook(mlx->mlx_ptr, image_window, mlx);
-	mlx_hook(mlx->window, 2, 0, key_press, mlx);
+	mlx_hook(mlx->window, PRESS_DOWN, 0, key_press, mlx);
+	mlx_hook(mlx->window, PRESS_UP, 0, key_release, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
 }

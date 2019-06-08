@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/07 17:21:00 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/08 17:53:38 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void		drawlineLow(t_point a, t_point b, t_fdf *mlx)
 	cur_point = a;
 	while (cur_point.x < b.x)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->window, 420 + cur_point.x + mlx->x,
-		200 + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
+		mlx_pixel_put(mlx->mlx_ptr, mlx->window, PLACING_X + cur_point.x + mlx->x,
+		PLACING_Y + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
 		if (delta > 0)
 		{
 			cur_point.y = cur_point.y + mlx->increase;
@@ -58,8 +58,8 @@ static void		drawlineHigh(t_point a, t_point b, t_fdf *mlx)
 	cur_point = a;
 	while (cur_point.y < b.y)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->window, 420 + cur_point.x + mlx->x,
-		200 + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
+		mlx_pixel_put(mlx->mlx_ptr, mlx->window, PLACING_X + cur_point.x + mlx->x,
+		PLACING_Y + cur_point.y + mlx->y, get_color(cur_point, a, b, mlx));
 		if (delta > 0)
 		{
 			cur_point.x = cur_point.x + mlx->increase;
@@ -92,8 +92,8 @@ static t_point	scale(int x, int y, t_fdf *mlx)
 {
 	t_point line;
 
-	line.x = x * 23;
-	line.y = y * 23;
+	line.x = x * mlx->point->zoom;
+	line.y = y * mlx->point->zoom;
 	line.z = mlx->map->map[y][x] * mlx->point->z_value;
 	line.color = set_color(line.z, mlx);
 	line = rotation_x(line, mlx);

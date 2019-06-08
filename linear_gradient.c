@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/03 16:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/07 15:46:42 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/08 17:28:40 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static double	percent(int start, int end, int current)
 
 	placement = current - start;
 	distance = end - start;
-	if (distance == 0)
-		result = 1.0;
-	else
-		result = placement / distance;
+	result = (distance == 0) ? 1.0 : (placement / distance);
 	return (result);
 }
 
@@ -48,8 +45,6 @@ int				set_color(int z, t_fdf *mlx)
 {
 	if (z == 0)
 		return (BLUE);
-	// else if (z >= 15 && z <= 40)
-	// 	return (PURPLE);
 	else if (z > 0)
 		return (GREEN);
 	else if (z < 0)
@@ -60,7 +55,6 @@ int				set_color(int z, t_fdf *mlx)
 int				get_color(t_point current, t_point a, t_point b, t_fdf *mlx)
 {
 	double	percentage;
-
 
 	if (current.color == b.color)
 		return (current.color);
@@ -73,6 +67,6 @@ int				get_color(t_point current, t_point a, t_point b, t_fdf *mlx)
 
 
 // extra's!
-	// a.color = set_color(current.z, mlx);		for color change on the lines!!
-	// b.color = set_color(current.z, mlx);		for color change on the lines!!
-	// current = (t_point){mlx->point->color, mlx->point->color};  for disco!!!!
+	// current = (t_point){mlx->point->color, mlx->point->color};//  for disco!!!!
+	// a.color = set_color(current.z, mlx);//		for color change on the lines!!
+	// b.color = set_color(current.z, mlx);//		for color change on the lines!!
