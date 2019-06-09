@@ -4,7 +4,7 @@ In this project I discovered the basics of graphic programming, and in particula
 to place points in space, how to join them with segments and most importantly how to
 observe the scene from a particular viewpoint.
 
-The goal was to make 3D display of a given map. For bonus we could make it rotate and show it from different angles, parallel and isometric. Or we that it is possible to adjust the size of the map and the depth of some of the given values. 
+The goal was to make 3D display of a given map. For bonus we could make it rotate and show it from different angles, parallel and isometric. Or to make it possible to adjust the size of the map and the depth of some of the given values. 
 
 # How to compile and run the project
 
