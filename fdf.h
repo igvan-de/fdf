@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/09 15:18:28 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/09 15:41:39 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 #include "./Libft/includes/libft.h"
 #include "./Libft/includes/get_next_line.h"
 #include "./Printf/ft_printf.h"
-#include <stdio.h> /* DELETE ME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-//check colors I want to use later
 #define RED 0xf2460d
 #define BLUE 0x3399ff
 #define GREEN 0x4dff4d
@@ -29,8 +27,8 @@
 #define HEIGHT 800
 #define PRESS_DOWN 2
 #define PRESS_UP 3
-#define PLACE_X 420
-#define PLACE_Y 200
+#define PLACE_X 540
+#define PLACE_Y 120
 #define X_SIZE 650
 #define Y_SIZE 550
 
@@ -110,8 +108,6 @@ int			get_color(t_point current, t_point a, t_point b, t_fdf *mlx);
 t_point     rotation_x(t_point cordinate, t_fdf *mlx);
 t_point     rotation_y(t_point cordinate, t_fdf *mlx);
 t_point     rotation_z(t_point cordinate, t_fdf *mlx);
-
 t_point		iso(t_point line, int x, int y, int z);
-//Check pylone
 
 #endif

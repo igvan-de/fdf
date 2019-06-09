@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/16 15:11:06 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/09 15:13:38 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/09 15:30:30 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		**atoi_array(int x, int y, char **tab, t_map *map)
 		x--;
 		map->map[y][x] = ft_atoi(tab[x]);
 	}
-	return(map->map);
+	return (map->map);
 }
 
 static int		**check_map(t_map *map, int x)

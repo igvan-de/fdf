@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 11:41:41 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/09 15:01:38 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/09 15:46:11 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				main(int ag, char **av)
 {
 	t_fdf	*mlx;
 
-	if (ag == 1)
+	if (ag == 1 || av[2] == NULL)
 		return (put_input());
 	set_mlx(&mlx);
 	set_map(av[1], mlx->map);
