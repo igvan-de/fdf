@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/05/09 17:46:17 by igvan-de       #+#    #+#                 #
-#    Updated: 2019/06/08 17:28:53 by igvan-de      ########   odam.nl          #
+#    Updated: 2019/06/09 15:02:27 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ COLOR_GREEN = $(shell printf "\e[38;5;10m")
 COLOR_DEFAULT = $(shell printf "\e[39m")
 
 BINARY = fdf
-SRCS = map.c error.c window.c main.c keyboard.c linedrawing.c rotation.c linear_gradient.c
+SRCS =	map.c error.c window.c main.c keyboard.c linedrawing.c rotation.c \
+		linear_gradient.c isometric.c
 OBJ = $(SRCS:%.c=%.o)
 FLAGS = -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit -o $(BINARY)
 LIB = Printf/libftprintf.a

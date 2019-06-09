@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/09 18:11:20 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/08 19:42:35 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/09 15:18:28 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@
 #include <stdio.h> /* DELETE ME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 //check colors I want to use later
-#define ORANGE 0xf98c1f
-#define PURPLE 0xf2460d
-#define BLUE 0xffff99
-#define GREEN 0x6666ff
+#define RED 0xf2460d
+#define BLUE 0x3399ff
+#define GREEN 0x4dff4d
 
 #define WIDTH 1250
 #define HEIGHT 800
@@ -74,6 +73,7 @@ typedef struct		s_point
 	int				z_value;
 	int				zoom;
 	int				keydown;
+	int				iso;
 	double			alpha;
 	double			beta;
 	double			gamma;
@@ -111,6 +111,7 @@ t_point     rotation_x(t_point cordinate, t_fdf *mlx);
 t_point     rotation_y(t_point cordinate, t_fdf *mlx);
 t_point     rotation_z(t_point cordinate, t_fdf *mlx);
 
+t_point		iso(t_point line, int x, int y, int z);
 //Check pylone
 
 #endif

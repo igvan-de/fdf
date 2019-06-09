@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/06/03 16:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/08 19:52:31 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/09 15:18:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				set_color(int z, t_fdf *mlx)
 	else if (z > 0)
 		return (GREEN);
 	else if (z < 0)
-		return (PURPLE);
+		return (RED);
 	return (0);
 }
 

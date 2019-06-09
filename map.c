@@ -6,12 +6,22 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/16 15:11:06 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/08 17:44:03 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/09 15:13:38 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <fcntl.h>
+
+static int		**atoi_array(int x, int y, char **tab, t_map *map)
+{
+	while (x > 0)
+	{
+		x--;
+		map->map[y][x] = ft_atoi(tab[x]);
+	}
+	return(map->map);
+}
 
 static int		**check_map(t_map *map, int x)
 {
@@ -38,12 +48,9 @@ static int		**twodimencional_array(int fd, t_map *map, int y, int x)
 		x = ft_arraylen(tab);
 		check_map(map, x);
 		map->map[y] = (int*)ft_memalloc(sizeof(int) * x);
-		while (x > 0)
-		{
-			x--;
-			map->map[y][x] = ft_atoi(tab[x]);
-		}
+		atoi_array(x, y, tab, map);
 		free(line);
+		ft_strarrdel(&tab);
 		y++;
 		if (ret == -1)
 			break ;

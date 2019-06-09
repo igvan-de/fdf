@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/24 17:39:26 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/08 19:45:11 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/09 14:09:16 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ static t_point	scale(int x, int y, t_fdf *mlx)
 	line = rotation_x(line, mlx);
 	line = rotation_y(line, mlx);
 	line = rotation_z(line, mlx);
+	line = iso(line, line.x, line.y, line.z);
 	return (line);
 }
 
