@@ -6,11 +6,12 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/13 11:41:41 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/06/09 15:46:11 by igvan-de      ########   odam.nl         */
+/*   Updated: 2019/06/09 16:13:54 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <fcntl.h>
 
 static void		menu(void)
 {
@@ -44,7 +45,7 @@ int				main(int ag, char **av)
 {
 	t_fdf	*mlx;
 
-	if (ag == 1 || av[2] == NULL)
+	if (ag == 1 || open(av[1], O_RDONLY) < 0)
 		return (put_input());
 	set_mlx(&mlx);
 	set_map(av[1], mlx->map);
