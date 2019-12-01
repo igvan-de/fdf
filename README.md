@@ -11,3 +11,5 @@ The goal was to make 3D display of a given map. For bonus we could make it rotat
 - make                                  {to compile all the files}
 - ./fdf ./test_maps/codam.fdf           {to run a given map}
 - ./fdf ./test_maps/codam.fdf --menu    {to run a given map and see the menu for keyboard usage}
+
+![](.fdf.gif)
